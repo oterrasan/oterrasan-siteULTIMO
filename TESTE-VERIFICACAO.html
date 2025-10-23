@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TESTE - Estatísticas Corretas</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 50px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            color: #D4AF37;
+            margin-bottom: 50px;
+            text-align: center;
+        }
+        
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 50px;
+            margin: 50px 0;
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-number {
+            font-size: 48px;
+            font-weight: 800;
+            color: #D4AF37;
+            display: block;
+            margin-bottom: 16px;
+            text-transform: uppercase;
+        }
+        
+        .stat-label {
+            font-size: 16px;
+            color: rgba(255,255,255,0.7);
+        }
+        
+        .info {
+            background: #1a1a1a;
+            padding: 30px;
+            border-radius: 8px;
+            margin-top: 50px;
+            border-left: 4px solid #D4AF37;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 TESTE DE VERIFICAÇÃO - ESTATÍSTICAS</h1>
+        
+        <div class="info">
+            <h2 style="color: #D4AF37; margin-bottom: 20px;">Se você está vendo esta página:</h2>
+            <p style="font-size: 18px; line-height: 1.8; margin-bottom: 15px;">
+                ✅ O arquivo foi extraído corretamente<br>
+                ✅ O navegador está funcionando<br>
+                ✅ Agora veja abaixo como as estatísticas DEVEM aparecer:
+            </p>
+        </div>
+        
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number">MAIS DE 25</span>
+                <span class="stat-label">Anos de mercado</span>
+            </div>
+            
+            <div class="stat-item">
+                <span class="stat-number">12 MIL</span>
+                <span class="stat-label">Clientes</span>
+            </div>
+            
+            <div class="stat-item">
+                <span class="stat-number">300 MILHÕES</span>
+                <span class="stat-label">Capital segurado</span>
+            </div>
+        </div>
+        
+        <div class="info">
+            <h2 style="color: #D4AF37; margin-bottom: 20px;">✅ ESTÁ CORRETO?</h2>
+            <p style="font-size: 18px; line-height: 1.8; margin-bottom: 15px;">
+                <strong>SIM:</strong> Os números grandes dourados estão mostrando "MAIS DE 25", "12 MIL" e "300 MILHÕES"?<br>
+                → <strong style="color: #00ff00;">PERFEITO! O arquivo está correto.</strong>
+            </p>
+            <p style="font-size: 18px; line-height: 1.8; color: #ff4444;">
+                <strong>NÃO:</strong> Ainda mostra apenas "25", "12" e "300"?<br>
+                → <strong>O navegador está usando CACHE da versão antiga.</strong>
+            </p>
+        </div>
+        
+        <div class="info" style="margin-top: 30px;">
+            <h2 style="color: #D4AF37; margin-bottom: 20px;">🔧 SOLUÇÃO PARA CACHE:</h2>
+            <ol style="font-size: 18px; line-height: 2; padding-left: 30px;">
+                <li><strong>Windows:</strong> Aperte <code style="background: #000; padding: 5px 10px; border-radius: 4px;">Ctrl + Shift + Delete</code> → Limpar cache</li>
+                <li><strong>Mac:</strong> Aperte <code style="background: #000; padding: 5px 10px; border-radius: 4px;">Cmd + Shift + Delete</code> → Limpar cache</li>
+                <li><strong>Ou:</strong> Abra em <strong>janela anônima / modo privado</strong></li>
+                <li><strong>Ou:</strong> Teste em <strong>outro navegador</strong> (Chrome, Firefox, Safari)</li>
+            </ol>
+        </div>
+        
+        <div class="info" style="margin-top: 30px; background: #004400; border-color: #00ff00;">
+            <h2 style="color: #00ff00; margin-bottom: 20px;">✅ PRÓXIMO PASSO</h2>
+            <p style="font-size: 18px; line-height: 1.8;">
+                Depois de limpar o cache, abra novamente o arquivo <strong>index.html</strong> e verifique se aparece igual a esta página de teste.
+            </p>
+        </div>
+        
+        <div style="text-align: center; margin-top: 50px; padding: 30px; background: #1a1a1a; border-radius: 8px;">
+            <p style="font-size: 20px; color: #D4AF37;">
+                <strong>📧 Se mesmo após limpar cache continuar errado, me avise!</strong>
+            </p>
+        </div>
+    </div>
+</body>
+</html>

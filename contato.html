@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contato | Roberto Terrasan</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .contact-hero {
+            min-height: 100vh;
+            background-image: url('assets/images/contact-bg.png');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            position: relative;
+            display: flex;
+            align-items: center;
+            padding-top: 80px;
+        }
+        .contact-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.85);
+        }
+        .contact-content {
+            position: relative;
+            z-index: 2;
+        }
+        .contact-form {
+            background: rgba(26,26,26,0.95);
+            padding: 48px;
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.2);
+            backdrop-filter: blur(10px);
+        }
+        .form-group {
+            margin-bottom: 24px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            color: #D4AF37;
+            font-weight: 600;
+        }
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 14px;
+            background: rgba(0,0,0,0.5);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 16px;
+        }
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #D4AF37;
+        }
+        .contact-info {
+            background: rgba(26,26,26,0.95);
+            padding: 48px;
+            border-radius: 16px;
+            border: 1px solid rgba(212,175,55,0.2);
+            backdrop-filter: blur(10px);
+        }
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .info-icon {
+            width: 50px;
+            height: 50px;
+            background: rgba(212,175,55,0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #D4AF37;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <nav class="nav">
+                <a href="index.html" class="logo">
+                    <span style="font-size: 24px; font-weight: 800; color: #D4AF37;">TERRASAN</span>
+                </a>
+                <ul class="nav-menu">
+                    <li><a href="roberto-terrasan.html" class="nav-link">Roberto Terrasan</a></li>
+                    <li class="dropdown">
+                        <a href="solucoes.html" class="nav-link">Soluções <i class="fas fa-chevron-down"></i></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="solucoes/protecoes-financeiras.html">Proteções Financeiras</a></li>
+                            <li><a href="solucoes/juridico-tributario.html">Jurídico e Tributário</a></li>
+                            <li><a href="solucoes/previdencia-privada.html">Previdência Privada</a></li>
+                            <li><a href="solucoes/investimentos.html">Investimentos</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="lions.html" class="nav-link">Lions Corretora</a></li>
+                    <li><a href="jarvis.html" class="nav-link">JARVIS CRM</a></li>
+                    <li><a href="noticias.html" class="nav-link">Notícias</a></li>
+                    <li><a href="contato.html" class="nav-link active">Contato</a></li>
+                </ul>
+                <a href="https://jarvis.oterrasan.com.br/login" target="_blank" class="btn-login">Área do Cliente</a>
+                <button class="mobile-toggle" aria-label="Menu">
+                    <span></span><span></span><span></span>
+                </button>
+            </nav>
+        </div>
+    </header>
+
+    <section class="contact-hero">
+        <div class="container contact-content">
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start;">
+                <div class="contact-form">
+                    <h1 style="font-size: 36px; margin-bottom: 16px; color: #D4AF37;">Agende Sua Consultoria</h1>
+                    <p style="margin-bottom: 32px; color: rgba(255,255,255,0.8);">Preencha o formulário abaixo e nossa equipe entrará em contato em até 24 horas.</p>
+                    
+                    <form action="https://formspree.io/f/XXXXXXXX" method="POST">
+                        <div class="form-group">
+                            <label for="nome">Nome Completo *</label>
+                            <input type="text" id="nome" name="nome" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">E-mail *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="telefone">Telefone *</label>
+                            <input type="tel" id="telefone" name="telefone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="perfil">Perfil *</label>
+                            <select id="perfil" name="perfil" required>
+                                <option value="">Selecione...</option>
+                                <option value="medico">Médico</option>
+                                <option value="atleta">Atleta Profissional</option>
+                                <option value="empresario">Empresário</option>
+                                <option value="outro">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="patrimonio">Patrimônio Aproximado *</label>
+                            <select id="patrimonio" name="patrimonio" required>
+                                <option value="">Selecione...</option>
+                                <option value="ate-1m">Até R$ 1 milhão</option>
+                                <option value="1m-5m">R$ 1M - R$ 5M</option>
+                                <option value="5m-10m">R$ 5M - R$ 10M</option>
+                                <option value="acima-10m">Acima de R$ 10M</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="assunto">Assunto *</label>
+                            <input type="text" id="assunto" name="assunto" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="mensagem">Mensagem</label>
+                            <textarea id="mensagem" name="mensagem"></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label style="display: flex; align-items: center; gap: 8px; color: rgba(255,255,255,0.8); font-weight: 400;">
+                                <input type="checkbox" name="lgpd" required style="width: auto;">
+                                Aceito a <a href="politica-privacidade.html" style="color: #D4AF37;">política de privacidade</a>
+                            </label>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary" style="width: 100%; padding: 16px;">
+                            Enviar Mensagem
+                        </button>
+                    </form>
+                </div>
+                
+                <div class="contact-info">
+                    <h2 style="font-size: 28px; margin-bottom: 32px; color: #D4AF37;">Informações de Contato</h2>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-phone"></i></div>
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 4px;">Telefone</h4>
+                            <a href="tel:+5511999999999" style="color: rgba(255,255,255,0.8);">+55 11 99999-9999</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-envelope"></i></div>
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 4px;">E-mail</h4>
+                            <a href="mailto:contato@oterrasan.com.br" style="color: rgba(255,255,255,0.8);">contato@oterrasan.com.br</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fab fa-whatsapp"></i></div>
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 4px;">WhatsApp</h4>
+                            <a href="https://wa.me/5511999999999" target="_blank" style="color: rgba(255,255,255,0.8);">Iniciar conversa</a>
+                        </div>
+                    </div>
+                    
+                    <div class="info-item">
+                        <div class="info-icon"><i class="fas fa-clock"></i></div>
+                        <div>
+                            <h4 style="color: #fff; margin-bottom: 4px;">Horário</h4>
+                            <p style="color: rgba(255,255,255,0.8); margin: 0;">Segunda a Sexta: 9h às 18h</p>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 48px;">
+                        <h3 style="color: #D4AF37; margin-bottom: 16px;">Ou agende direto:</h3>
+                        <a href="https://jarvis.oterrasan.com.br/login" target="_blank" class="btn btn-outline" style="width: 100%; display: block; text-align: center;">
+                            Agendar pelo Calendly
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <span style="font-size: 24px; font-weight: 800; color: #D4AF37;">TERRASAN</span>
+                    <p>Planejamento financeiro premium.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Soluções</h4>
+                    <ul>
+                        <li><a href="solucoes/protecoes-financeiras.html">Proteções Financeiras</a></li>
+                        <li><a href="solucoes/investimentos.html">Investimentos</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Empresa</h4>
+                    <ul>
+                        <li><a href="roberto-terrasan.html">Roberto Terrasan</a></li>
+                        <li><a href="lions.html">Lions Corretora</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Contato</h4>
+                    <ul>
+                        <li><a href="tel:+5511999999999">+55 11 99999-9999</a></li>
+                        <li><a href="mailto:contato@oterrasan.com.br">contato@oterrasan.com.br</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Roberto Terrasan. Todos os direitos reservados.</p>
+                <div class="footer-links">
+                    <a href="politica-privacidade.html">Privacidade</a>
+                    <a href="termos-de-uso.html">Termos</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <a href="https://wa.me/5511999999999" class="whatsapp-float" target="_blank" aria-label="WhatsApp">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="assets/js/main.js"></script>
+</body>
+</html>
