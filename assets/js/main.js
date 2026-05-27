@@ -66,6 +66,100 @@ function renderChart(key, values) {
     });
 }
 
+function enhanceRadarCards() {
+    const thumbs = ["thumb-market", "thumb-insurance", "thumb-sector", "thumb-ai", "thumb-build"];
+
+    document.querySelectorAll(".radar-list a").forEach((link, index) => {
+        const meta = link.querySelector("span:not(.radar-thumb)");
+        if (meta) meta.classList.add("radar-meta");
+
+        if (!link.querySelector(".radar-thumb")) {
+            const thumb = document.createElement("span");
+            thumb.className = `radar-thumb ${thumbs[index % thumbs.length]}`;
+            link.prepend(thumb);
+        }
+
+        if (!link.querySelector("strong")) {
+            const text = [...link.childNodes]
+                .filter((node) => node.nodeType === Node.TEXT_NODE)
+                .map((node) => node.textContent.trim())
+                .filter(Boolean)
+                .join(" ");
+
+            [...link.childNodes].forEach((node) => {
+                if (node.nodeType === Node.TEXT_NODE && node.textContent.trim()) node.remove();
+            });
+
+            const title = document.createElement("strong");
+            title.textContent = text || link.textContent.trim();
+            link.append(title);
+        }
+    });
+}
+
+function ensureLivePanelChrome() {
+    const panelStatus = document.querySelector(".panel-status");
+    if (panelStatus && !document.querySelector(".source-pulse")) {
+        panelStatus.insertAdjacentHTML("afterend", `
+            <div class="source-pulse">
+                <span>Dados reais</span>
+                <strong>Yahoo Finance, BCB SGS, BrasilAPI, AwesomeAPI e Impostometro</strong>
+            </div>
+        `);
+    }
+
+    const charts = document.querySelector(".dual-charts");
+    if (charts && !charts.querySelector('[data-chart="usd"]')) {
+        charts.insertAdjacentHTML("beforeend", `
+            <div class="market-screen" aria-label="Grafico de moedas animado">
+                <div class="screen-head"><span>FX pulse</span><strong>Dolar / Cripto</strong></div>
+                <svg class="live-chart" viewBox="0 0 300 130" role="img" aria-label="Linha de moedas em movimento">
+                    <path class="chart-grid" d="M0 26 H300 M0 65 H300 M0 104 H300 M60 0 V130 M120 0 V130 M180 0 V130 M240 0 V130"></path>
+                    <polyline class="chart-line" data-chart="usd" points="0,64 28,58 58,74 88,52 118,66 148,42 178,55 208,34 238,49 268,30 300,38"></polyline>
+                    <polyline class="chart-line" data-chart="btc" points="0,92 24,76 54,86 86,62 116,72 146,44 176,66 206,36 238,48 268,28 300,58"></polyline>
+                </svg>
+                <div class="market-scan"></div>
+            </div>
+        `);
+    }
+
+    if (charts && !charts.querySelector('[data-chart="dow"]')) {
+        charts.insertAdjacentHTML("beforeend", `
+            <div class="market-screen" aria-label="Grafico Dow Jones e euro animado">
+                <div class="screen-head"><span>Wall Street / FX</span><strong>Dow / Euro</strong></div>
+                <svg class="live-chart" viewBox="0 0 300 130" role="img" aria-label="Linha Dow Jones e euro em movimento">
+                    <path class="chart-grid" d="M0 26 H300 M0 65 H300 M0 104 H300 M60 0 V130 M120 0 V130 M180 0 V130 M240 0 V130"></path>
+                    <polyline class="chart-line" data-chart="dow" points="0,82 28,70 56,78 86,58 116,64 146,40 176,52 206,33 236,44 266,31 300,46"></polyline>
+                    <polyline class="chart-line" data-chart="eur" points="0,44 28,58 56,50 86,72 116,60 146,86 176,66 206,92 236,74 266,100 300,84"></polyline>
+                </svg>
+                <div class="market-scan"></div>
+            </div>
+        `);
+    }
+
+    if (charts && !charts.querySelector('[data-chart="gbp"]')) {
+        charts.insertAdjacentHTML("beforeend", `
+            <div class="market-screen" aria-label="Grafico libra e ethereum animado">
+                <div class="screen-head"><span>Risk pulse</span><strong>Libra / ETH</strong></div>
+                <svg class="live-chart" viewBox="0 0 300 130" role="img" aria-label="Linha libra e ethereum em movimento">
+                    <path class="chart-grid" d="M0 26 H300 M0 65 H300 M0 104 H300 M60 0 V130 M120 0 V130 M180 0 V130 M240 0 V130"></path>
+                    <polyline class="chart-line" data-chart="gbp" points="0,70 28,60 56,68 86,48 116,60 146,42 176,54 206,38 236,52 266,36 300,44"></polyline>
+                    <polyline class="chart-line" data-chart="eth" points="0,96 28,82 56,88 86,64 116,76 146,48 176,70 206,42 236,56 266,34 300,62"></polyline>
+                </svg>
+                <div class="market-scan"></div>
+            </div>
+        `);
+    }
+
+    if (charts && !document.querySelector(".market-marquee")) {
+        charts.insertAdjacentHTML("afterend", `
+            <div class="market-marquee" aria-label="Esteira de mercado">
+                <span>IBOV</span><span>DOLAR</span><span>EURO</span><span>BTC</span><span>SELIC</span><span>CDI</span><span>IPCA</span><span>IMPOSTOS</span>
+            </div>
+        `);
+    }
+}
+
 function parseCurrencyText(value) {
     const digits = String(value || "").replace(/[^\d,]/g, "").replace(",", ".");
     const parsed = Number(digits);
@@ -216,10 +310,16 @@ function startTaxometer(initialValue) {
 }
 
 function applyMarketApi(data) {
+    let currencyCount = 0;
+
     Object.entries(data?.currencies || {}).forEach(([key, item]) => {
         const formatted = formatMarketCurrency(key, item?.value);
-        if (formatted) setMarket(key, formatted);
+        if (formatted) {
+            currencyCount += 1;
+            setMarket(key, formatted);
+        }
         if (Number.isFinite(Number(item?.change))) setChange(key, formatPercent(item.change));
+        renderChart(key, item?.chart);
     });
 
     Object.entries(data?.macro || {}).forEach(([key, item]) => {
@@ -238,11 +338,13 @@ function applyMarketApi(data) {
     }
 
     setUpdated(data?.updatedAt);
+    return { currencyCount };
 }
 
 async function loadMarketApi() {
     const data = await getJson("/api/market", 7500);
-    applyMarketApi(data);
+    const result = applyMarketApi(data);
+    if (!result.currencyCount) await loadCurrencies();
 }
 
 async function refreshMarketData() {
@@ -330,6 +432,8 @@ function setupReveal() {
 
 document.addEventListener("DOMContentLoaded", () => {
     bootDefaults();
+    enhanceRadarCards();
+    ensureLivePanelChrome();
     setupSidebar();
     setupActiveNav();
     setupReveal();
