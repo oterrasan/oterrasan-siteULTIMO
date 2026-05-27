@@ -146,18 +146,18 @@ function startClock() {
 
 function setupSidebar() {
     const toggle = document.querySelector(".mobile-shell-toggle");
-    const links = document.querySelectorAll(".side-link");
+    const links = document.querySelectorAll(".top-nav a");
 
     if (toggle) {
         toggle.addEventListener("click", () => {
-            const open = document.body.classList.toggle("menu-open");
+            const open = document.body.classList.toggle("nav-open");
             toggle.setAttribute("aria-expanded", String(open));
         });
     }
 
     links.forEach((link) => {
         link.addEventListener("click", () => {
-            document.body.classList.remove("menu-open");
+            document.body.classList.remove("nav-open");
             if (toggle) toggle.setAttribute("aria-expanded", "false");
         });
     });
@@ -165,7 +165,7 @@ function setupSidebar() {
 
 function setupActiveNav() {
     const sections = [...document.querySelectorAll("section[id]")];
-    const links = [...document.querySelectorAll(".side-link")];
+    const links = [...document.querySelectorAll(".top-nav > .nav-item > a, .top-nav > a")];
     const map = new Map(links.map((link) => [link.getAttribute("href")?.replace("#", ""), link]));
 
     const observer = new IntersectionObserver((entries) => {
