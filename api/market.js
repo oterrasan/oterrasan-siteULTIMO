@@ -45,14 +45,42 @@ function fromAwesome(item) {
 }
 
 async function getCurrencies() {
-    const data = await fetchJson("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL,ETH-BRL");
-    return {
-        usd: fromAwesome(data.USDBRL),
-        eur: fromAwesome(data.EURBRL),
-        gbp: fromAwesome(data.GBPBRL),
-        btc: fromAwesome(data.BTCBRL),
-        eth: fromAwesome(data.ETHBRL)
-    };
+    const pairs = [
+        ["usd", "BRL=X"],
+        ["eur", "EURBRL=X"],
+        ["gbp", "GBPBRL=X"],
+        ["btc", "BTC-BRL"],
+        ["eth", "ETH-BRL"]
+    ];
+    let primary = {};
+
+    try {
+        const data = await fetchJson("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,GBP-BRL,BTC-BRL,ETH-BRL");
+        primary = {
+            usd: fromAwesome(data.USDBRL),
+            eur: fromAwesome(data.EURBRL),
+            gbp: fromAwesome(data.GBPBRL),
+            btc: fromAwesome(data.BTCBRL),
+            eth: fromAwesome(data.ETHBRL)
+        };
+    } catch {
+        primary = {};
+    }
+
+    const needsFallback = pairs.some(([key]) => !Number.isFinite(Number(primary[key]?.value)));
+    if (!needsFallback) return primary;
+
+    const fallbackEntries = await Promise.allSettled(pairs.map(async ([key, symbol]) => {
+        const quote = await getYahooIndex(symbol);
+        return [key, quote ? { ...quote, source: "Yahoo Finance chart" } : null];
+    }));
+
+    const fallback = Object.fromEntries(fallbackEntries
+        .filter((entry) => entry.status === "fulfilled")
+        .map((entry) => entry.value)
+        .filter(([, value]) => Number.isFinite(Number(value?.value))));
+
+    return { ...fallback, ...primary };
 }
 
 async function getBcbMacro() {
