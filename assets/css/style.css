@@ -2,6 +2,75 @@
 
 :root {
     --topbar: 62px;
+    --line: rgba(212, 232, 232, 0.18);
+    --line-strong: rgba(222, 240, 238, 0.36);
+    --text: #fffaf0;
+    --muted: #bfd0cc;
+    --shadow: 0 24px 80px rgba(0, 9, 16, 0.58);
+    --font: Inter, Roboto, "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+body {
+    font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+strong,
+.top-nav > a,
+.client-login span,
+.client-login button {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.26);
+}
+
+.hero-command,
+.editorial-stage,
+.section-block {
+    background: rgba(9, 8, 24, 0.82);
+}
+
+.hero-command {
+    min-height: 660px;
+    grid-template-rows: auto 1fr;
+    column-gap: 16px;
+    row-gap: 18px;
+    align-items: start;
+    background:
+        linear-gradient(110deg, rgba(141,109,255,0.18), transparent 34%),
+        linear-gradient(250deg, rgba(107,214,223,0.11), transparent 38%),
+        rgba(12, 9, 26, 0.86);
+}
+
+.hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    padding-top: 18px;
+}
+
+.control-board {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+}
+
+.impact-stats {
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-self: end;
+    margin-top: 0;
+}
+
+.impact-stats div {
+    min-height: 126px;
+    padding: 16px;
+    background: rgba(141,109,255,0.055);
+}
+
+.impact-stats strong {
+    font-size: 26px;
 }
 
 @media (min-width: 1041px) {
@@ -68,5 +137,18 @@
         grid-template-columns: auto 66px 66px 42px;
         gap: 4px;
         padding-left: 8px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .hero-copy,
+    .control-board,
+    .impact-stats {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .hero-copy {
+        padding-top: 0;
     }
 }
