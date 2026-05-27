@@ -1,0 +1,485 @@
+/* O Terrasan visual layer: dark violet, petroleum and market-terminal finish. */
+:root {
+    --bg: #03070d;
+    --bg-soft: #071018;
+    --surface: #0b101a;
+    --surface-2: #101827;
+    --surface-3: #17142a;
+    --line: rgba(170, 198, 204, 0.16);
+    --line-strong: rgba(172, 207, 214, 0.34);
+    --text: #f4f7f4;
+    --muted: #a5b8b8;
+    --muted-2: #65787b;
+    --gold: #bca76a;
+    --violet: #6e43d9;
+    --green: #3ce7c0;
+    --cyan: #52c7de;
+    --red: #ff5d6f;
+    --topbar: 62px;
+    --shadow: 0 24px 86px rgba(0, 5, 10, 0.72);
+    --font: Inter, Roboto, "Segoe UI Variable", "Segoe UI", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, Arial, sans-serif;
+}
+
+body {
+    background:
+        linear-gradient(90deg, rgba(118,160,168,0.028) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(118,160,168,0.022) 1px, transparent 1px),
+        radial-gradient(circle at 12% 8%, rgba(89, 47, 168, 0.28), transparent 30%),
+        radial-gradient(circle at 86% 18%, rgba(20, 82, 92, 0.22), transparent 32%),
+        linear-gradient(135deg, rgba(16, 9, 35, 0.94), rgba(3, 11, 16, 0.98) 46%, rgba(3, 18, 23, 0.98)),
+        var(--bg);
+    background-size: 76px 76px, 76px 76px, auto, auto, auto, auto;
+    color: var(--text);
+    font-weight: 430;
+}
+
+h1,
+h2,
+h3 {
+    font-weight: 660;
+}
+
+strong,
+.top-nav > a,
+.client-login span,
+.client-login button,
+.rail-head span,
+.eyebrow,
+.stage-main span,
+.section-heading span,
+.ecosystem-card span,
+.product-grid article span,
+.tax-box span,
+.live-stream span,
+.mission-grid span,
+.operations-feed > span {
+    font-weight: 560;
+}
+
+h1,
+h2,
+h3,
+strong,
+.top-nav > a,
+.client-login span,
+.client-login button {
+    text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
+}
+
+.top-shell {
+    grid-template-columns: 178px minmax(0, 1fr);
+    column-gap: 12px;
+    padding: 8px 14px;
+    background: rgba(3, 7, 13, 0.96);
+    border-color: rgba(137, 165, 172, 0.16);
+}
+
+.top-brand {
+    grid-template-columns: 34px minmax(0, 1fr);
+    min-height: 38px;
+}
+
+.brand-mark {
+    width: 34px;
+    height: 34px;
+    border-color: rgba(110, 67, 217, 0.64);
+    background: linear-gradient(135deg, rgba(110,67,217,0.32), rgba(21,94,103,0.18));
+    font-weight: 820;
+}
+
+.top-nav {
+    flex-wrap: nowrap;
+    gap: 5px;
+    overflow-x: auto;
+    overflow-y: visible;
+    scrollbar-width: none;
+}
+
+.top-nav::-webkit-scrollbar {
+    display: none;
+}
+
+.top-nav > a,
+.top-cta {
+    flex: 0 0 auto;
+    min-height: 36px;
+    padding: 0 9px;
+    background: rgba(10, 16, 27, 0.82);
+    border-color: rgba(155, 184, 190, 0.16);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.top-nav > a:hover,
+.top-nav > a.active {
+    border-color: rgba(110, 67, 217, 0.48);
+    background: linear-gradient(135deg, rgba(110,67,217,0.18), rgba(19,74,83,0.11));
+}
+
+.top-cta,
+.btn.primary {
+    background: linear-gradient(135deg, rgba(188,167,106,0.96), rgba(125,105,58,0.96));
+    border-color: rgba(224, 205, 140, 0.65);
+    color: #071018;
+}
+
+.client-login {
+    position: sticky;
+    right: 0;
+    z-index: 2;
+    flex: 0 0 auto;
+    grid-template-columns: auto 74px 74px 48px;
+    gap: 5px;
+    min-height: 38px;
+    padding: 0 0 0 12px;
+    background: rgba(3, 7, 13, 0.96);
+    border-color: rgba(137, 165, 172, 0.16);
+}
+
+.client-login input,
+.client-login button {
+    background: rgba(10, 16, 27, 0.82);
+    border-color: rgba(155, 184, 190, 0.16);
+}
+
+.info-radar,
+.live-panel,
+.hero-command,
+.editorial-stage,
+.section-block,
+.control-board {
+    background:
+        linear-gradient(145deg, rgba(26, 13, 53, 0.48), rgba(4, 14, 20, 0.88)),
+        rgba(5, 9, 16, 0.94);
+    border-color: rgba(151, 178, 185, 0.16);
+    box-shadow: 0 24px 86px rgba(0, 5, 10, 0.58);
+}
+
+.hero-command {
+    min-height: 660px;
+    grid-template-rows: auto 1fr;
+    column-gap: 16px;
+    row-gap: 18px;
+    align-items: start;
+    background:
+        linear-gradient(105deg, rgba(91, 45, 175, 0.22), transparent 34%),
+        linear-gradient(250deg, rgba(19, 91, 102, 0.18), transparent 39%),
+        rgba(4, 9, 16, 0.95);
+}
+
+.hero-command h1 {
+    color: #f8fbf8;
+    font-weight: 700;
+}
+
+.hero-copy {
+    grid-column: 1;
+    grid-row: 1;
+    align-self: start;
+    padding-top: 18px;
+}
+
+.control-board {
+    grid-column: 2;
+    grid-row: 1 / span 2;
+    align-self: stretch;
+}
+
+.impact-stats {
+    grid-column: 1;
+    grid-row: 2;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-self: end;
+    margin-top: 0;
+}
+
+.impact-stats div {
+    min-height: 126px;
+    padding: 16px;
+    background: rgba(9, 18, 28, 0.82);
+}
+
+.impact-stats strong {
+    font-size: 26px;
+}
+
+.profile-chip,
+.founder-strip,
+.impact-stats,
+.market-screen,
+.market-stack div,
+.signal-board div,
+.mission-grid article,
+.live-stream p,
+.operations-feed div,
+.stage-grid article,
+.ecosystem-card,
+.editorial-grid article,
+.product-grid article,
+.proof-grid article,
+.tools-board a {
+    background:
+        linear-gradient(145deg, rgba(255,255,255,0.035), rgba(255,255,255,0.012)),
+        rgba(8, 14, 23, 0.9);
+    border-color: rgba(150, 180, 188, 0.15);
+}
+
+.stage-main h2,
+.section-heading h2,
+.final-cta h2 {
+    font-weight: 700;
+}
+
+.stage-grid strong,
+.ecosystem-card h3,
+.editorial-grid strong,
+.product-grid strong,
+.proof-grid strong,
+.tools-board a {
+    font-weight: 600;
+}
+
+.rail-head span,
+.eyebrow,
+.stage-main span,
+.section-heading span,
+.ecosystem-card span,
+.product-grid article span,
+.tax-box span,
+.live-stream span,
+.mission-grid span,
+.operations-feed > span {
+    color: #c8b878;
+}
+
+.radar-lead {
+    background:
+        linear-gradient(135deg, rgba(80, 44, 160, 0.22), rgba(8, 25, 31, 0.38)),
+        rgba(6, 12, 20, 0.82);
+}
+
+.radar-lead h2 {
+    font-weight: 680;
+}
+
+.radar-list a {
+    display: grid;
+    grid-template-columns: 74px minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 7px 12px;
+    min-height: 112px;
+    padding: 14px 16px;
+    font-weight: 580;
+    background:
+        linear-gradient(90deg, rgba(83, 51, 165, 0.1), transparent 72%),
+        rgba(5, 11, 18, 0.42);
+    transition: background 0.18s ease, border-color 0.18s ease;
+}
+
+.radar-list a:hover {
+    border-color: rgba(110, 67, 217, 0.44);
+    background:
+        linear-gradient(90deg, rgba(99, 59, 190, 0.18), rgba(19, 83, 94, 0.1)),
+        rgba(7, 13, 21, 0.82);
+}
+
+.radar-list strong {
+    display: block;
+    align-self: start;
+    font-weight: 640;
+    letter-spacing: 0;
+}
+
+.radar-thumb {
+    grid-row: 1 / span 2;
+    align-self: center;
+    width: 74px;
+    height: 74px;
+    margin: 0;
+    border: 1px solid rgba(156, 187, 195, 0.16);
+    border-radius: var(--radius);
+    background-image:
+        linear-gradient(135deg, rgba(65, 36, 130, 0.72), rgba(3, 14, 20, 0.3)),
+        url("../images/radar-editorial-strip.jpg");
+    background-size: 100% 100%, 500% 100%;
+    background-position: center, var(--thumb-x) center;
+    background-repeat: no-repeat;
+    box-shadow: inset 0 0 28px rgba(74, 43, 145, 0.24), 0 14px 34px rgba(0, 6, 12, 0.34);
+    overflow: hidden;
+}
+
+.radar-thumb::after {
+    content: "";
+    display: block;
+    width: 100%;
+    height: 100%;
+    background:
+        linear-gradient(90deg, rgba(255,255,255,0.08), transparent 34%),
+        radial-gradient(circle at 70% 18%, rgba(80,210,220,0.14), transparent 42%);
+    mix-blend-mode: screen;
+}
+
+.thumb-market { --thumb-x: 0%; }
+.thumb-insurance { --thumb-x: 25%; }
+.thumb-sector { --thumb-x: 50%; }
+.thumb-ai { --thumb-x: 75%; }
+.thumb-build { --thumb-x: 100%; }
+
+.radar-meta {
+    align-self: end;
+    margin: 0;
+}
+
+.network-map,
+.market-screen {
+    background:
+        linear-gradient(90deg, rgba(154,186,192,0.055) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(154,186,192,0.045) 1px, transparent 1px),
+        radial-gradient(circle at 50% 42%, rgba(83, 51, 165, 0.16), transparent 48%),
+        linear-gradient(145deg, rgba(7, 16, 25, 0.96), rgba(4, 11, 17, 0.98));
+    border-color: rgba(153, 183, 190, 0.2);
+    box-shadow: inset 0 0 42px rgba(0, 0, 0, 0.35), 0 18px 44px rgba(0, 4, 10, 0.32);
+}
+
+.market-screen {
+    min-height: 196px;
+}
+
+.screen-head {
+    color: #9fb2b5;
+}
+
+.screen-head strong {
+    color: #c8b878;
+    font-weight: 620;
+}
+
+.chart-grid {
+    stroke: rgba(166, 194, 200, 0.12);
+}
+
+.chart-line {
+    stroke-width: 3.35;
+    opacity: 0.94;
+}
+
+.line-a {
+    stroke: #3ce7c0;
+    filter: drop-shadow(0 0 8px rgba(60, 231, 192, 0.32));
+}
+
+.line-b {
+    stroke: #7c58f2;
+    filter: drop-shadow(0 0 8px rgba(124, 88, 242, 0.28));
+}
+
+.chart-line[data-chart="ibov"] { stroke: #35e6a8; filter: drop-shadow(0 0 9px rgba(53, 230, 168, 0.36)); }
+.chart-line[data-chart="nasdaq"] { stroke: #8e63ff; filter: drop-shadow(0 0 9px rgba(142, 99, 255, 0.32)); }
+.chart-line[data-chart="sp500"] { stroke: #49bed2; filter: drop-shadow(0 0 9px rgba(73, 190, 210, 0.32)); }
+.chart-line[data-chart="dow"] { stroke: #c8b878; filter: drop-shadow(0 0 9px rgba(200, 184, 120, 0.3)); }
+.chart-line[data-chart="usd"] { stroke: #d7e68a; filter: drop-shadow(0 0 9px rgba(215, 230, 138, 0.3)); }
+.chart-line[data-chart="eur"] { stroke: #a78bfa; filter: drop-shadow(0 0 9px rgba(167, 139, 250, 0.3)); }
+.chart-line[data-chart="gbp"] { stroke: #72f1d3; filter: drop-shadow(0 0 9px rgba(114, 241, 211, 0.3)); }
+.chart-line[data-chart="btc"] { stroke: #f0a15c; filter: drop-shadow(0 0 9px rgba(240, 161, 92, 0.3)); }
+.chart-line[data-chart="eth"] { stroke: #e76d8b; filter: drop-shadow(0 0 9px rgba(231, 109, 139, 0.3)); }
+
+.market-scan {
+    background: linear-gradient(90deg, transparent, rgba(90, 65, 180, 0.18), transparent);
+}
+
+.source-pulse {
+    padding: 12px 16px;
+    border-bottom: 1px solid var(--line);
+    background: linear-gradient(90deg, rgba(85,50,170,0.13), rgba(20,80,92,0.06));
+}
+
+.source-pulse span,
+.market-marquee span {
+    color: var(--muted);
+    font-size: 10px;
+    text-transform: uppercase;
+}
+
+.source-pulse strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--text);
+    font-size: 12px;
+    line-height: 1.3;
+}
+
+.market-marquee {
+    display: flex;
+    gap: 8px;
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--line);
+    overflow: hidden;
+}
+
+.market-marquee span {
+    color: #c8b878;
+    animation: pulseLine 4s ease-in-out infinite;
+}
+
+.market-stack div {
+    border-left: 2px solid var(--accent, rgba(110, 67, 217, 0.46));
+    background:
+        linear-gradient(135deg, var(--accent-bg, rgba(110,67,217,0.08)), transparent 70%),
+        rgba(7, 14, 22, 0.88);
+}
+
+.market-stack div:nth-child(1) { --accent: #d7e68a; --accent-bg: rgba(215,230,138,0.075); }
+.market-stack div:nth-child(2) { --accent: #a78bfa; --accent-bg: rgba(167,139,250,0.075); }
+.market-stack div:nth-child(3) { --accent: #72f1d3; --accent-bg: rgba(114,241,211,0.075); }
+.market-stack div:nth-child(4) { --accent: #f0a15c; --accent-bg: rgba(240,161,92,0.075); }
+.market-stack div:nth-child(5) { --accent: #e76d8b; --accent-bg: rgba(231,109,139,0.075); }
+.market-stack div:nth-child(6) { --accent: #35e6a8; --accent-bg: rgba(53,230,168,0.075); }
+.market-stack div:nth-child(7) { --accent: #8e63ff; --accent-bg: rgba(142,99,255,0.075); }
+.market-stack div:nth-child(8) { --accent: #49bed2; --accent-bg: rgba(73,190,210,0.075); }
+.market-stack div:nth-child(9) { --accent: #c8b878; --accent-bg: rgba(200,184,120,0.075); }
+.market-stack div:nth-child(10) { --accent: #58b8c8; --accent-bg: rgba(88,184,200,0.07); }
+.market-stack div:nth-child(11) { --accent: #bca76a; --accent-bg: rgba(188,167,106,0.07); }
+.market-stack div:nth-child(12) { --accent: #d86976; --accent-bg: rgba(216,105,118,0.07); }
+
+.market-stack strong {
+    color: var(--accent, var(--text));
+    font-weight: 650;
+}
+
+.tax-box {
+    background: rgba(5, 11, 18, 0.78);
+}
+
+.signal-board em {
+    background: linear-gradient(90deg, #6e43d9, #52c7de, #3ce7c0);
+}
+
+@media (min-width: 1041px) and (max-width: 1320px) {
+    .top-shell {
+        grid-template-columns: 150px minmax(0, 1fr);
+    }
+
+    .top-nav > a,
+    .top-cta {
+        padding: 0 7px;
+        font-size: 11px;
+    }
+
+    .client-login {
+        grid-template-columns: auto 66px 66px 42px;
+        gap: 4px;
+        padding-left: 8px;
+    }
+}
+
+@media (max-width: 1040px) {
+    .hero-copy,
+    .control-board,
+    .impact-stats {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .hero-copy {
+        padding-top: 0;
+    }
+}
