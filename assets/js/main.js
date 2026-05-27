@@ -1,320 +1,214 @@
-// ========================================
-// ROBERTO TERRASAN - LIONS CORRETORA
-// JavaScript Principal
-// ========================================
-
-document.addEventListener('DOMContentLoaded', function() {
-    
-    // === MENU MOBILE ===
-    const mobileToggle = document.querySelector('.mobile-toggle');
-    const navMenu = document.querySelector('.nav-menu');
-    const body = document.body;
-    
-    if (mobileToggle) {
-        mobileToggle.addEventListener('click', function() {
-            navMenu.classList.toggle('active');
-            body.style.overflow = navMenu.classList.contains('active') ? 'hidden' : '';
-        });
-    }
-    
-    // Fechar menu ao clicar em link
-    const navLinks = document.querySelectorAll('.nav-link');
-    navLinks.forEach(link => {
-        link.addEventListener('click', function() {
-            if (window.innerWidth <= 768) {
-                navMenu.classList.remove('active');
-                body.style.overflow = '';
-            }
-        });
-    });
-    
-    // === DROPDOWN MOBILE ===
-    const dropdownItems = document.querySelectorAll('.dropdown');
-    dropdownItems.forEach(dropdown => {
-        const link = dropdown.querySelector('.nav-link');
-        if (link) {
-            link.addEventListener('click', function(e) {
-                if (window.innerWidth <= 768) {
-                    e.preventDefault();
-                    dropdown.classList.toggle('active');
-                }
-            });
-        }
-    });
-    
-    // === STICKY HEADER ===
-    const header = document.querySelector('.header');
-    let lastScroll = 0;
-    
-    window.addEventListener('scroll', function() {
-        const currentScroll = window.pageYOffset;
-        
-        if (currentScroll > 100) {
-            header.classList.add('scrolled');
-        } else {
-            header.classList.remove('scrolled');
-        }
-        
-        lastScroll = currentScroll;
-    });
-    
-    // === SMOOTH SCROLL ===
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
-            const href = this.getAttribute('href');
-            if (href !== '#' && href !== '#login') {
-                e.preventDefault();
-                const target = document.querySelector(href);
-                if (target) {
-                    const headerHeight = document.querySelector('.header').offsetHeight;
-                    const targetPosition = target.offsetTop - headerHeight;
-                    
-                    window.scrollTo({
-                        top: targetPosition,
-                        behavior: 'smooth'
-                    });
-                }
-            }
-        });
-    });
-    
-    // === ANIMAÇÃO ON SCROLL ===
-    const observerOptions = {
-        threshold: 0.1,
-        rootMargin: '0px 0px -100px 0px'
-    };
-    
-    const observer = new IntersectionObserver(function(entries) {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.style.opacity = '1';
-                entry.target.style.transform = 'translateY(0)';
-            }
-        });
-    }, observerOptions);
-    
-    // Animar elementos com classe .animate
-    document.querySelectorAll('.animate').forEach(el => {
-        el.style.opacity = '0';
-        el.style.transform = 'translateY(30px)';
-        el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-        observer.observe(el);
-    });
-    
-    // === CONTADOR DE NÚMEROS (ESTATÍSTICAS) ===
-    const counters = document.querySelectorAll('.stat-number');
-    const speed = 200;
-    
-    const runCounter = (counter) => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const count = parseInt(counter.innerText);
-        const increment = target / speed;
-        
-        if (count < target) {
-            counter.innerText = Math.ceil(count + increment);
-            setTimeout(() => runCounter(counter), 1);
-        } else {
-            counter.innerText = target;
-        }
-    };
-    
-    const counterObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const counter = entry.target;
-                const originalText = counter.textContent;
-                const numberMatch = originalText.match(/\d+/);
-                
-                if (numberMatch) {
-                    counter.setAttribute('data-target', numberMatch[0]);
-                    counter.innerText = '0';
-                    runCounter(counter);
-                }
-                
-                counterObserver.unobserve(counter);
-            }
-        });
-    }, { threshold: 0.5 });
-    
-    counters.forEach(counter => {
-        counterObserver.observe(counter);
-    });
-    
-    // === VALIDAÇÃO DE FORMULÁRIO ===
-    const forms = document.querySelectorAll('form');
-    forms.forEach(form => {
-        form.addEventListener('submit', function(e) {
-            let isValid = true;
-            const inputs = form.querySelectorAll('input[required], textarea[required], select[required]');
-            
-            inputs.forEach(input => {
-                if (!input.value.trim()) {
-                    isValid = false;
-                    input.style.borderColor = '#dc3545';
-                } else {
-                    input.style.borderColor = '';
-                }
-                
-                // Validação de email
-                if (input.type === 'email' && input.value) {
-                    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-                    if (!emailRegex.test(input.value)) {
-                        isValid = false;
-                        input.style.borderColor = '#dc3545';
-                    }
-                }
-            });
-            
-            if (!isValid) {
-                e.preventDefault();
-                alert('Por favor, preencha todos os campos obrigatórios corretamente.');
-            }
-        });
-    });
-    
-    // Remover borda vermelha ao digitar
-    document.querySelectorAll('input, textarea, select').forEach(field => {
-        field.addEventListener('input', function() {
-            this.style.borderColor = '';
-        });
-    });
-    
-    // === MÁSCARA DE TELEFONE ===
-    const phoneInputs = document.querySelectorAll('input[type="tel"]');
-    phoneInputs.forEach(input => {
-        input.addEventListener('input', function(e) {
-            let value = e.target.value.replace(/\D/g, '');
-            if (value.length > 11) value = value.slice(0, 11);
-            
-            if (value.length > 10) {
-                value = value.replace(/(\d{2})(\d{5})(\d{4})/, '($1) $2-$3');
-            } else if (value.length > 6) {
-                value = value.replace(/(\d{2})(\d{4})(\d{0,4})/, '($1) $2-$3');
-            } else if (value.length > 2) {
-                value = value.replace(/(\d{2})(\d{0,5})/, '($1) $2');
-            } else {
-                value = value.replace(/(\d*)/, '$1');
-            }
-            
-            e.target.value = value;
-        });
-    });
-    
-    // === LAZY LOADING DE IMAGENS ===
-    if ('loading' in HTMLImageElement.prototype) {
-        const images = document.querySelectorAll('img[loading="lazy"]');
-        images.forEach(img => {
-            img.src = img.dataset.src || img.src;
-        });
-    } else {
-        // Fallback para navegadores que não suportam loading="lazy"
-        const script = document.createElement('script');
-        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/lazysizes/5.3.2/lazysizes.min.js';
-        document.body.appendChild(script);
-    }
-    
-    // === FECHAR DROPDOWN AO CLICAR FORA ===
-    document.addEventListener('click', function(e) {
-        if (!e.target.closest('.dropdown')) {
-            dropdownItems.forEach(dropdown => {
-                dropdown.classList.remove('active');
-            });
-        }
-    });
-    
-    // === PREVENIR MÚLTIPLOS SUBMITS ===
-    forms.forEach(form => {
-        let submitted = false;
-        form.addEventListener('submit', function() {
-            if (submitted) {
-                return false;
-            }
-            submitted = true;
-            
-            // Reabilitar após 3 segundos
-            setTimeout(() => {
-                submitted = false;
-            }, 3000);
-        });
-    });
-    
-    // === BOTÃO VOLTAR AO TOPO ===
-    const backToTop = document.querySelector('.back-to-top');
-    if (backToTop) {
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 500) {
-                backToTop.style.display = 'flex';
-            } else {
-                backToTop.style.display = 'none';
-            }
-        });
-        
-        backToTop.addEventListener('click', function() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-    }
-    
-    // === WHATSAPP BUTTON - APARECER APÓS SCROLL ===
-    const whatsappBtn = document.querySelector('.whatsapp-float');
-    if (whatsappBtn) {
-        whatsappBtn.style.opacity = '0';
-        whatsappBtn.style.transform = 'scale(0)';
-        whatsappBtn.style.transition = 'opacity 0.3s, transform 0.3s';
-        
-        window.addEventListener('scroll', function() {
-            if (window.pageYOffset > 300) {
-                whatsappBtn.style.opacity = '1';
-                whatsappBtn.style.transform = 'scale(1)';
-            } else {
-                whatsappBtn.style.opacity = '0';
-                whatsappBtn.style.transform = 'scale(0)';
-            }
-        });
-    }
-    
-    // === ACTIVE LINK BASEADO NA URL ===
-    const currentPath = window.location.pathname;
-    navLinks.forEach(link => {
-        const linkPath = link.getAttribute('href');
-        if (currentPath.includes(linkPath) && linkPath !== '#') {
-            link.classList.add('active');
-        }
-    });
-    
-    // === PRELOADER (se existir) ===
-    const preloader = document.querySelector('.preloader');
-    if (preloader) {
-        window.addEventListener('load', function() {
-            preloader.style.opacity = '0';
-            setTimeout(() => {
-                preloader.style.display = 'none';
-            }, 300);
-        });
-    }
-    
+const BRL = new Intl.NumberFormat("pt-BR", {
+    style: "currency",
+    currency: "BRL",
+    maximumFractionDigits: 2
 });
 
-// === FUNÇÃO PARA COPIAR TEXTO ===
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        alert('Copiado para a área de transferência!');
-    }).catch(err => {
-        console.error('Erro ao copiar:', err);
+const PLAIN = new Intl.NumberFormat("pt-BR", {
+    maximumFractionDigits: 2
+});
+
+const defaults = {
+    usd: "R$ 5,66",
+    eur: "R$ 6,14",
+    btc: "R$ 620 mil",
+    selic: "10,50%",
+    ipca: "4,50%",
+    ibov: "126.000 pts",
+    nasdaq: "17.800 pts",
+    sp500: "5.300 pts"
+};
+
+function setText(selector, value) {
+    document.querySelectorAll(selector).forEach((node) => {
+        node.textContent = value;
     });
 }
 
-// === FUNÇÃO PARA COMPARTILHAR ===
-function shareContent(title, text, url) {
-    if (navigator.share) {
-        navigator.share({
-            title: title,
-            text: text,
-            url: url
-        }).catch(err => console.log('Erro ao compartilhar:', err));
-    } else {
-        copyToClipboard(url);
+function setMarket(key, value) {
+    setText(`[data-market="${key}"]`, value);
+}
+
+function setChange(key, value) {
+    document.querySelectorAll(`[data-market-change="${key}"]`).forEach((node) => {
+        node.textContent = value;
+        node.style.color = value.trim().startsWith("-") ? "var(--red)" : "var(--green)";
+    });
+}
+
+function bootDefaults() {
+    Object.entries(defaults).forEach(([key, value]) => setMarket(key, value));
+}
+
+async function getJson(url, timeout = 6500) {
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), timeout);
+    try {
+        const response = await fetch(url, { signal: controller.signal, cache: "no-store" });
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        return await response.json();
+    } finally {
+        clearTimeout(timer);
     }
 }
+
+async function loadCurrencies() {
+    try {
+        const data = await getJson("https://economia.awesomeapi.com.br/json/last/USD-BRL,EUR-BRL,BTC-BRL");
+        const usd = data.USDBRL;
+        const eur = data.EURBRL;
+        const btc = data.BTCBRL;
+
+        if (usd?.bid) {
+            setMarket("usd", BRL.format(Number(usd.bid)));
+            setChange("usd", `${Number(usd.pctChange || 0).toFixed(2).replace(".", ",")}%`);
+        }
+        if (eur?.bid) {
+            setMarket("eur", BRL.format(Number(eur.bid)));
+            setChange("eur", `${Number(eur.pctChange || 0).toFixed(2).replace(".", ",")}%`);
+        }
+        if (btc?.bid) {
+            setMarket("btc", BRL.format(Number(btc.bid)));
+            setChange("btc", `${Number(btc.pctChange || 0).toFixed(2).replace(".", ",")}%`);
+        }
+    } catch (error) {
+        console.info("Cotacoes externas indisponiveis; mantendo fallback local.", error);
+    }
+}
+
+async function loadBcbSeries() {
+    const series = [
+        ["selic", "432"],
+        ["ipca", "433"]
+    ];
+
+    await Promise.all(series.map(async ([key, code]) => {
+        try {
+            const data = await getJson(`https://api.bcb.gov.br/dados/serie/bcdata.sgs.${code}/dados/ultimos/1?formato=json`);
+            const value = Number(data?.[0]?.valor);
+            if (Number.isFinite(value)) setMarket(key, `${PLAIN.format(value)}%`);
+        } catch (error) {
+            console.info(`Serie BCB ${code} indisponivel; mantendo fallback local.`, error);
+        }
+    }));
+}
+
+async function loadMarketIndexes() {
+    const items = [
+        ["ibov", "%5EBVSP", "pts"],
+        ["nasdaq", "%5EIXIC", "pts"],
+        ["sp500", "%5EGSPC", "pts"]
+    ];
+
+    await Promise.all(items.map(async ([key, symbol, suffix]) => {
+        try {
+            const data = await getJson(`https://query1.finance.yahoo.com/v8/finance/chart/${symbol}?range=1d&interval=5m`);
+            const meta = data?.chart?.result?.[0]?.meta;
+            const value = Number(meta?.regularMarketPrice);
+            if (Number.isFinite(value)) setMarket(key, `${PLAIN.format(value)} ${suffix}`);
+        } catch (error) {
+            console.info(`Indice ${key} indisponivel; mantendo fallback local.`, error);
+        }
+    }));
+}
+
+function startTaxometer() {
+    const startOfYear = new Date(new Date().getFullYear(), 0, 1).getTime();
+    const now = Date.now();
+    const elapsedSeconds = Math.max(0, Math.floor((now - startOfYear) / 1000));
+    const annualEstimate = 3800000000000;
+    const secondsInYear = 365 * 24 * 60 * 60;
+    const rate = annualEstimate / secondsInYear;
+    let value = elapsedSeconds * rate;
+
+    const render = () => {
+        setMarket("taxometer", BRL.format(value).replace(",00", ""));
+        value += rate;
+    };
+
+    render();
+    setInterval(render, 1000);
+}
+
+function startClock() {
+    const render = () => {
+        const now = new Date();
+        const time = now.toLocaleTimeString("pt-BR", {
+            hour: "2-digit",
+            minute: "2-digit",
+            timeZone: "America/Sao_Paulo"
+        });
+        setText("[data-clock]", time);
+    };
+    render();
+    setInterval(render, 10000);
+}
+
+function setupSidebar() {
+    const toggle = document.querySelector(".mobile-shell-toggle");
+    const links = document.querySelectorAll(".side-link");
+
+    if (toggle) {
+        toggle.addEventListener("click", () => {
+            const open = document.body.classList.toggle("menu-open");
+            toggle.setAttribute("aria-expanded", String(open));
+        });
+    }
+
+    links.forEach((link) => {
+        link.addEventListener("click", () => {
+            document.body.classList.remove("menu-open");
+            if (toggle) toggle.setAttribute("aria-expanded", "false");
+        });
+    });
+}
+
+function setupActiveNav() {
+    const sections = [...document.querySelectorAll("section[id]")];
+    const links = [...document.querySelectorAll(".side-link")];
+    const map = new Map(links.map((link) => [link.getAttribute("href")?.replace("#", ""), link]));
+
+    const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+
+        links.forEach((link) => link.classList.remove("active"));
+        map.get(visible.target.id)?.classList.add("active");
+    }, {
+        rootMargin: "-22% 0px -60% 0px",
+        threshold: [0.16, 0.32, 0.48]
+    });
+
+    sections.forEach((section) => observer.observe(section));
+}
+
+function setupReveal() {
+    const items = document.querySelectorAll(".section-block, .impact-copy, .impact-command, .market-tape");
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+            if (entry.isIntersecting) entry.target.classList.add("is-visible");
+        });
+    }, { threshold: 0.08 });
+
+    items.forEach((item) => {
+        item.classList.add("reveal");
+        observer.observe(item);
+    });
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    bootDefaults();
+    setupSidebar();
+    setupActiveNav();
+    setupReveal();
+    startClock();
+    startTaxometer();
+    loadCurrencies();
+    loadBcbSeries();
+    loadMarketIndexes();
+    setInterval(loadCurrencies, 120000);
+    setInterval(loadBcbSeries, 300000);
+    setInterval(loadMarketIndexes, 180000);
+});
