@@ -47,6 +47,12 @@
             <a href="#clientes">Clientes</a>
             <a href="#sobre">Sobre</a>
             <a class="top-cta" href="contato.html">Agendar</a>
+            <form class="client-login" action="jarvis.html">
+                <span>Acesso clientes</span>
+                <input type="text" name="login" placeholder="Login" aria-label="Login do cliente">
+                <input type="password" name="senha" placeholder="Senha" aria-label="Senha do cliente">
+                <button type="submit">Entrar</button>
+            </form>
         </nav>
     </header>
 
@@ -224,35 +230,65 @@
                 <span>24h</span>
                 <strong>Painel Vivo</strong>
             </div>
-            <div class="market-screen" aria-label="Grafico financeiro animado">
-                <div class="screen-head">
-                    <span>Market pulse</span>
-                    <strong>B3 / Nasdaq / Macro</strong>
+            <div class="panel-status">
+                <span>Fontes abertas</span>
+                <strong data-updated>sincronizando...</strong>
+            </div>
+            <div class="dual-charts">
+                <div class="market-screen" aria-label="Grafico Ibovespa animado">
+                    <div class="screen-head">
+                        <span>B3 pulse</span>
+                        <strong>Ibovespa</strong>
+                    </div>
+                    <svg class="live-chart" viewBox="0 0 300 130" role="img" aria-label="Linha de mercado em movimento">
+                        <path class="chart-grid" d="M0 26 H300 M0 65 H300 M0 104 H300 M60 0 V130 M120 0 V130 M180 0 V130 M240 0 V130"></path>
+                        <polyline class="chart-line line-a" data-chart="ibov" points="0,94 26,80 48,86 78,54 104,66 132,38 158,47 188,24 218,42 246,30 274,52 300,20"></polyline>
+                        <polyline class="chart-line line-b" points="0,42 28,56 62,48 90,70 124,58 152,78 184,62 214,84 242,72 270,92 300,74"></polyline>
+                    </svg>
+                    <div class="market-scan"></div>
                 </div>
-                <svg class="live-chart" viewBox="0 0 300 130" role="img" aria-label="Linha de mercado em movimento">
-                    <path class="chart-grid" d="M0 26 H300 M0 65 H300 M0 104 H300 M60 0 V130 M120 0 V130 M180 0 V130 M240 0 V130"></path>
-                    <polyline class="chart-line line-a" points="0,94 26,80 48,86 78,54 104,66 132,38 158,47 188,24 218,42 246,30 274,52 300,20"></polyline>
-                    <polyline class="chart-line line-b" points="0,42 28,56 62,48 90,70 124,58 152,78 184,62 214,84 242,72 270,92 300,74"></polyline>
-                </svg>
-                <div class="market-scan"></div>
+                <div class="market-screen" aria-label="Grafico global animado">
+                    <div class="screen-head">
+                        <span>Global pulse</span>
+                        <strong>Nasdaq / S&P</strong>
+                    </div>
+                    <svg class="live-chart" viewBox="0 0 300 130" role="img" aria-label="Linha global em movimento">
+                        <path class="chart-grid" d="M0 26 H300 M0 65 H300 M0 104 H300 M60 0 V130 M120 0 V130 M180 0 V130 M240 0 V130"></path>
+                        <polyline class="chart-line line-b" data-chart="nasdaq" points="0,86 30,72 58,82 86,62 112,72 146,44 176,54 206,34 236,58 264,36 300,48"></polyline>
+                        <polyline class="chart-line line-a" data-chart="sp500" points="0,54 28,66 58,52 88,76 118,64 146,86 182,70 212,94 244,82 274,98 300,86"></polyline>
+                    </svg>
+                    <div class="market-scan"></div>
+                </div>
             </div>
             <div class="market-stack">
                 <div><span>USD/BRL</span><strong data-market="usd">--</strong><em data-market-change="usd">ao vivo</em></div>
                 <div><span>EUR/BRL</span><strong data-market="eur">--</strong><em data-market-change="eur">ao vivo</em></div>
+                <div><span>GBP/BRL</span><strong data-market="gbp">--</strong><em data-market-change="gbp">ao vivo</em></div>
                 <div><span>BTC/BRL</span><strong data-market="btc">--</strong><em data-market-change="btc">ao vivo</em></div>
+                <div><span>ETH/BRL</span><strong data-market="eth">--</strong><em data-market-change="eth">ao vivo</em></div>
                 <div><span>Ibovespa</span><strong data-market="ibov">--</strong><em>Bolsa</em></div>
                 <div><span>Nasdaq</span><strong data-market="nasdaq">--</strong><em>Global</em></div>
+                <div><span>S&P 500</span><strong data-market="sp500">--</strong><em>Global</em></div>
+                <div><span>Dow Jones</span><strong data-market="dow">--</strong><em>Global</em></div>
                 <div><span>Selic</span><strong data-market="selic">--</strong><em>BCB</em></div>
+                <div><span>CDI</span><strong data-market="cdi">--</strong><em>BrasilAPI</em></div>
                 <div><span>IPCA</span><strong data-market="ipca">--</strong><em>BCB</em></div>
             </div>
             <div class="tax-box">
-                <span>Impostometro estimado</span>
+                <span>Impostometro ao vivo</span>
                 <strong data-market="taxometer">--</strong>
+                <small>Fonte publica via proxy gratuito; fallback visual se a leitura falhar.</small>
             </div>
             <div class="signal-board">
                 <div><span>Risco</span><strong>68%</strong><em></em></div>
                 <div><span>Liquidez</span><strong>Alta</strong><em></em></div>
                 <div><span>IA</span><strong>Em alta</strong><em></em></div>
+            </div>
+            <div class="mission-grid">
+                <article><span>Fonte</span><strong>AwesomeAPI</strong><p>Moedas e cripto sem chave, cache publico.</p></article>
+                <article><span>Fonte</span><strong>BCB SGS</strong><p>Series macro oficiais do Banco Central.</p></article>
+                <article><span>Fonte</span><strong>BrasilAPI</strong><p>Taxas basicas em endpoint publico.</p></article>
+                <article><span>Fonte</span><strong>Yahoo/brapi</strong><p>Indices via proxy proprio com fallback quando a fonte limitar.</p></article>
             </div>
             <div class="live-stream">
                 <span>Agora no radar</span>
@@ -261,6 +297,19 @@
                 <p>IA aplicada em vendas e atendimento</p>
                 <p>Construcao formal aquecida no radar</p>
                 <p>Conteudo pronto para virar carrossel</p>
+                <p>Selic, CDI e IPCA puxando simuladores de renda</p>
+                <p>Bitcoin e Ethereum como termometro de apetite por risco</p>
+                <p>Fila de cortes para Instagram, YouTube e newsletter</p>
+                <p>Checklist de protecao patrimonial em preparacao</p>
+                <p>Dashboard de clientes e ferramentas como proxima camada</p>
+            </div>
+            <div class="operations-feed">
+                <span>Fluxo operacional</span>
+                <div><strong>Conteudo</strong><p>Materia real entra no Radar da Informacao.</p></div>
+                <div><strong>Analise</strong><p>Texto ganha leitura com voz Roberto Terrasan.</p></div>
+                <div><strong>Distribuicao</strong><p>Resumo vira post, carrossel, Reels e newsletter.</p></div>
+                <div><strong>Conversao</strong><p>Lead vai para ferramenta, produto ou consultoria.</p></div>
+                <div><strong>Relacionamento</strong><p>JARVIS CRM acompanha funil e agenda comercial.</p></div>
             </div>
         </aside>
     </main>
