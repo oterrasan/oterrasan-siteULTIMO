@@ -1,33 +1,34 @@
-/* O Terrasan light experiment: keep the live market panel dark, open the rest. */
+/* Grupo Terranzan institutional technology layer. */
 :root {
-    --bg: #eef2f1;
-    --bg-soft: #f8f9f5;
+    --bg: #eef2f3;
+    --bg-soft: #f8faf9;
     --surface: #ffffff;
-    --surface-2: #f2f4f1;
-    --surface-3: #e7ebe8;
-    --line: rgba(27, 39, 45, 0.13);
-    --line-strong: rgba(45, 58, 64, 0.24);
-    --text: #111820;
-    --muted: #667178;
-    --muted-2: #879098;
-    --gold: #9f7931;
-    --violet: #5a3bd7;
-    --green: #007d6a;
-    --cyan: #087b94;
+    --surface-2: #f2f5f5;
+    --surface-3: #e6ecee;
+    --line: rgba(22, 34, 42, 0.13);
+    --line-strong: rgba(22, 34, 42, 0.22);
+    --text: #111821;
+    --muted: #65717a;
+    --muted-2: #8c969d;
+    --gold: #9e7a34;
+    --violet: #4f3bd7;
+    --green: #007c68;
+    --cyan: #087c95;
     --red: #b9304c;
-    --shadow: 0 26px 80px rgba(40, 35, 65, 0.14);
+    --shadow: 0 28px 78px rgba(31, 42, 50, 0.13);
 }
 
 body {
     background:
-        linear-gradient(90deg, rgba(33, 50, 58, 0.035) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(33, 50, 58, 0.028) 1px, transparent 1px),
-        radial-gradient(circle at 12% 8%, rgba(103, 78, 210, 0.16), transparent 30%),
-        radial-gradient(circle at 84% 16%, rgba(0, 119, 138, 0.13), transparent 30%),
-        linear-gradient(135deg, #f7f8f4 0%, #edf2f0 48%, #e9eef3 100%),
+        linear-gradient(90deg, rgba(18, 34, 43, 0.035) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(18, 34, 43, 0.028) 1px, transparent 1px),
+        radial-gradient(circle at 11% 8%, rgba(79, 59, 215, 0.14), transparent 30%),
+        radial-gradient(circle at 88% 16%, rgba(8, 124, 149, 0.12), transparent 34%),
+        linear-gradient(135deg, #f8faf9 0%, #eef3f4 48%, #e8eef2 100%),
         var(--bg);
-    background-size: 76px 76px, 76px 76px, auto, auto, auto, auto;
+    background-size: 80px 80px, 80px 80px, auto, auto, auto, auto;
     color: var(--text);
+    font-weight: 390;
 }
 
 h1,
@@ -35,69 +36,157 @@ h2,
 h3,
 strong,
 .top-nav > a,
+.nav-item > a,
 .client-login span,
 .client-login button {
     text-shadow: none;
 }
 
-.top-shell {
-    background: rgba(248, 249, 245, 0.9);
-    border-color: rgba(27, 39, 45, 0.12);
-    box-shadow: 0 12px 40px rgba(31, 43, 50, 0.08);
+h1,
+h2,
+h3 {
+    font-weight: 570;
+    letter-spacing: 0;
 }
 
-.top-brand strong,
+strong,
 .top-nav > a,
+.nav-item > a,
 .client-login span,
 .client-login button,
-.client-login input {
-    color: var(--text);
+.btn,
+.rail-head span,
+.eyebrow,
+.stage-main span,
+.section-heading span,
+.ecosystem-card span,
+.product-grid article span,
+.tax-box span,
+.live-stream span,
+.mission-grid span,
+.operations-feed > span {
+    font-weight: 500;
 }
 
-.top-brand small,
-.profile-chip span,
-.client-login input::placeholder {
+.top-shell {
+    grid-template-columns: 210px minmax(0, 1fr);
+    min-height: 68px;
+    padding: 10px 16px;
+    background: rgba(248, 250, 249, 0.9);
+    border-color: rgba(22, 34, 42, 0.1);
+    box-shadow: 0 12px 42px rgba(31, 42, 50, 0.08);
+}
+
+.top-brand {
+    grid-template-columns: 38px minmax(0, 1fr);
+}
+
+.top-brand strong {
+    color: var(--text);
+    font-size: 14px;
+    font-weight: 560;
+}
+
+.top-brand small {
     color: var(--muted);
+    font-size: 11px;
 }
 
 .brand-mark {
+    width: 38px;
+    height: 38px;
     color: #ffffff;
-    border-color: rgba(90, 59, 215, 0.38);
-    background: linear-gradient(135deg, #5a3bd7, #087b94);
-    box-shadow: 0 12px 28px rgba(90, 59, 215, 0.18);
+    border-color: rgba(79, 59, 215, 0.35);
+    background: linear-gradient(135deg, #111821, #4f3bd7 52%, #087c95);
+    box-shadow: 0 14px 30px rgba(79, 59, 215, 0.18);
+}
+
+.top-nav {
+    gap: 6px;
 }
 
 .top-nav > a,
-.top-cta,
-.client-login input,
-.client-login button {
+.nav-item > a,
+.top-cta {
+    min-height: 38px;
+    padding: 0 11px;
+    color: #17212b;
+    border-color: rgba(22, 34, 42, 0.11);
     background: rgba(255, 255, 255, 0.74);
-    border-color: rgba(27, 39, 45, 0.12);
-    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.7);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.72);
 }
 
 .top-nav > a:hover,
-.top-nav > a.active {
-    border-color: rgba(90, 59, 215, 0.28);
-    background: linear-gradient(135deg, rgba(90, 59, 215, 0.1), rgba(8, 123, 148, 0.08));
+.nav-item > a:hover,
+.top-nav > a.active,
+.nav-item > a.active {
+    color: #101722;
+    border-color: rgba(79, 59, 215, 0.28);
+    background: linear-gradient(135deg, rgba(79, 59, 215, 0.1), rgba(8, 124, 149, 0.07));
 }
 
 .top-cta,
 .btn.primary {
     color: #ffffff;
     border-color: transparent;
-    background: linear-gradient(135deg, #5a3bd7, #087b94);
-    box-shadow: 0 18px 36px rgba(90, 59, 215, 0.2);
+    background: linear-gradient(135deg, #111821, #4f3bd7 58%, #087c95);
+    box-shadow: 0 18px 38px rgba(79, 59, 215, 0.2);
+}
+
+.mega-menu {
+    border-color: rgba(22, 34, 42, 0.12);
+    background: rgba(250, 252, 251, 0.98);
+    box-shadow: 0 24px 70px rgba(31, 42, 50, 0.16);
+}
+
+.mega-menu a {
+    color: var(--text);
+    background: rgba(255, 255, 255, 0.72);
+    border-color: rgba(22, 34, 42, 0.1);
+}
+
+.mega-menu a:hover {
+    border-color: rgba(79, 59, 215, 0.24);
+    background: rgba(245, 248, 250, 0.96);
+}
+
+.mega-menu strong {
+    color: var(--text);
+    font-weight: 560;
+}
+
+.mega-menu span {
+    color: var(--muted);
 }
 
 .client-login {
-    background: rgba(248, 249, 245, 0.94);
-    border-color: rgba(27, 39, 45, 0.12);
+    background: rgba(248, 250, 249, 0.94);
+    border-color: rgba(22, 34, 42, 0.12);
+}
+
+.client-login span,
+.client-login input {
+    color: var(--text);
+}
+
+.client-login input {
+    border-color: rgba(22, 34, 42, 0.12);
+    background: rgba(255, 255, 255, 0.76);
+}
+
+.client-login input::placeholder {
+    color: var(--muted-2);
 }
 
 .client-login button {
     color: #ffffff;
-    background: #111820;
+    background: #111821;
+    border-color: #111821;
+}
+
+.portal-layout {
+    gap: 18px;
+    padding: 18px 20px 56px;
 }
 
 .info-radar,
@@ -107,42 +196,51 @@ strong,
 .control-board {
     color: var(--text);
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.82), rgba(242, 246, 244, 0.92)),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(242, 246, 247, 0.94)),
         rgba(255, 255, 255, 0.94);
-    border-color: rgba(27, 39, 45, 0.12);
+    border-color: rgba(22, 34, 42, 0.11);
     box-shadow: var(--shadow);
 }
 
 .info-radar {
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(239, 244, 242, 0.94)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(239, 245, 246, 0.94)),
         var(--surface);
 }
 
 .hero-command {
+    min-height: 700px;
+    grid-template-columns: minmax(0, 0.94fr) minmax(330px, 1.06fr);
     background:
-        linear-gradient(112deg, rgba(90, 59, 215, 0.13), transparent 36%),
-        linear-gradient(252deg, rgba(8, 123, 148, 0.12), transparent 42%),
-        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(244, 247, 245, 0.92));
+        linear-gradient(112deg, rgba(79, 59, 215, 0.11), transparent 35%),
+        linear-gradient(252deg, rgba(8, 124, 149, 0.12), transparent 42%),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.97), rgba(244, 248, 249, 0.93));
 }
 
-.hero-command h1,
-.stage-main h2,
-.section-heading h2,
-.final-cta h2 {
-    color: #111820;
+.hero-command h1 {
+    max-width: 700px;
+    color: #101722;
+    font-size: 42px;
+    font-weight: 560;
+    line-height: 1.04;
+    text-transform: none;
+    white-space: normal;
 }
 
-.hero-command p,
-.stage-main p,
-.section-heading p,
-.ecosystem-card p,
-.editorial-grid p,
-.product-grid p,
-.proof-grid p,
-.founder-strip p,
-.radar-lead p {
+.hero-command p {
+    max-width: 660px;
     color: var(--muted);
+    font-size: 16px;
+    line-height: 1.55;
+}
+
+.rail-head {
+    border-color: rgba(22, 34, 42, 0.11);
+}
+
+.rail-head strong {
+    color: #111821;
+    font-weight: 560;
 }
 
 .rail-head span,
@@ -151,45 +249,61 @@ strong,
 .section-heading span,
 .ecosystem-card span,
 .product-grid article span {
-    color: #5a3bd7;
-}
-
-.rail-head {
-    border-color: rgba(27, 39, 45, 0.12);
+    color: #4f3bd7;
+    letter-spacing: 0.04em;
 }
 
 .radar-lead {
     background:
-        linear-gradient(135deg, rgba(90, 59, 215, 0.11), rgba(8, 123, 148, 0.08)),
-        rgba(255, 255, 255, 0.84);
-    border-color: rgba(27, 39, 45, 0.12);
+        linear-gradient(135deg, rgba(79, 59, 215, 0.1), rgba(8, 124, 149, 0.075)),
+        rgba(255, 255, 255, 0.86);
 }
 
-.radar-list a {
-    color: var(--text);
-    border-color: rgba(27, 39, 45, 0.1);
-    background:
-        linear-gradient(90deg, rgba(90, 59, 215, 0.055), transparent 72%),
-        rgba(255, 255, 255, 0.68);
+.radar-lead h2 {
+    color: #111821;
+    font-size: 24px;
+    font-weight: 540;
 }
 
-.radar-list a:hover {
-    border-color: rgba(90, 59, 215, 0.28);
-    background:
-        linear-gradient(90deg, rgba(90, 59, 215, 0.1), rgba(8, 123, 148, 0.06)),
-        rgba(255, 255, 255, 0.92);
-}
-
+.radar-lead p,
 .radar-list span {
     color: var(--muted);
 }
 
+.radar-list a {
+    color: var(--text);
+    border-color: rgba(22, 34, 42, 0.095);
+    background:
+        linear-gradient(90deg, rgba(79, 59, 215, 0.05), transparent 74%),
+        rgba(255, 255, 255, 0.7);
+}
+
+.radar-list a:hover {
+    border-color: rgba(79, 59, 215, 0.25);
+    background:
+        linear-gradient(90deg, rgba(79, 59, 215, 0.1), rgba(8, 124, 149, 0.055)),
+        rgba(255, 255, 255, 0.95);
+}
+
+.radar-list strong {
+    color: #111821;
+    font-weight: 520;
+}
+
 .radar-thumb {
-    border-color: rgba(90, 59, 215, 0.18);
-    box-shadow: inset 0 0 24px rgba(90, 59, 215, 0.16), 0 14px 32px rgba(31, 43, 50, 0.12);
+    border-color: rgba(79, 59, 215, 0.16);
+    box-shadow: inset 0 0 24px rgba(79, 59, 215, 0.15), 0 14px 30px rgba(31, 42, 50, 0.12);
+}
+
+.hero-pathways {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin-top: 24px;
 }
 
 .hero-pathways a,
+.brand-console,
+.institutional-strip,
 .profile-chip,
 .founder-strip,
 .impact-stats,
@@ -198,28 +312,34 @@ strong,
 .editorial-grid article,
 .product-grid article,
 .proof-grid article,
-.tools-board a {
+.tools-board a,
+.process-grid article,
+.video-card {
     color: var(--text);
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 248, 246, 0.86)),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.94), rgba(245, 249, 250, 0.86)),
         rgba(255, 255, 255, 0.9);
-    border-color: rgba(27, 39, 45, 0.12);
-    box-shadow: 0 18px 46px rgba(31, 43, 50, 0.08);
+    border-color: rgba(22, 34, 42, 0.105);
+    box-shadow: 0 18px 46px rgba(31, 42, 50, 0.075);
 }
 
 .hero-pathways a:hover,
 .ecosystem-card:hover,
-.tools-board a:hover {
-    border-color: rgba(90, 59, 215, 0.28);
+.tools-board a:hover,
+.video-card:hover {
+    border-color: rgba(79, 59, 215, 0.26);
     background:
-        linear-gradient(135deg, rgba(90, 59, 215, 0.09), rgba(8, 123, 148, 0.06)),
+        linear-gradient(135deg, rgba(79, 59, 215, 0.085), rgba(8, 124, 149, 0.055)),
         rgba(255, 255, 255, 0.96);
 }
 
 .hero-pathways span,
+.brand-console span,
 .profile-chip small,
-.map-node.core span {
-    color: #5a3bd7;
+.map-node.core span,
+.process-grid article span,
+.video-frame small {
+    color: #4f3bd7;
 }
 
 .hero-pathways strong,
@@ -229,32 +349,72 @@ strong,
 .product-grid strong,
 .proof-grid strong,
 .tools-board a,
-.founder-strip strong {
-    color: #111820;
+.founder-strip strong,
+.institutional-strip strong,
+.process-grid strong,
+.video-card h3,
+.video-frame strong {
+    color: #111821;
+    font-weight: 560;
 }
 
-.hero-pathways small {
+.hero-pathways small,
+.ecosystem-card p,
+.editorial-grid p,
+.product-grid p,
+.proof-grid p,
+.process-grid p,
+.video-card p,
+.institutional-strip p {
     color: var(--muted);
 }
 
-.profile-chip img,
-.founder-strip img {
-    border-color: rgba(90, 59, 215, 0.28);
+.brand-console {
+    display: inline-grid;
+    grid-template-columns: 42px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    max-width: 100%;
+    margin-top: 20px;
+    padding: 10px 14px 10px 10px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.brand-console > span {
+    display: grid;
+    place-items: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius);
+    color: #ffffff;
+    background: linear-gradient(135deg, #111821, #4f3bd7 58%, #087c95);
+}
+
+.brand-console strong,
+.brand-console small {
+    display: block;
+}
+
+.brand-console small {
+    margin-top: 2px;
+    color: var(--muted);
+    font-size: 12px;
 }
 
 .btn.secondary {
-    color: #111820;
-    background: rgba(255, 255, 255, 0.72);
-    border-color: rgba(27, 39, 45, 0.16);
+    color: #111821;
+    background: rgba(255, 255, 255, 0.76);
+    border-color: rgba(22, 34, 42, 0.14);
 }
 
 .impact-stats {
-    background: rgba(27, 39, 45, 0.09);
+    background: rgba(22, 34, 42, 0.08);
 }
 
 .impact-stats div {
     background:
-        linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(241, 245, 243, 0.9)),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.9), rgba(241, 246, 247, 0.9)),
         rgba(255, 255, 255, 0.88);
 }
 
@@ -266,72 +426,251 @@ strong,
 
 .impact-stats strong,
 .board-feed strong {
-    color: #111820;
+    color: #111821;
+    font-weight: 540;
 }
 
 .control-board {
     background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(240, 245, 243, 0.92)),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(240, 246, 247, 0.92)),
         rgba(255, 255, 255, 0.94);
 }
 
 .operator-topline {
     color: var(--muted);
-    border-color: rgba(27, 39, 45, 0.12);
+    border-color: rgba(22, 34, 42, 0.11);
 }
 
 .operator-topline strong {
-    color: #087b94;
+    color: #087c95;
 }
 
 .network-map {
     background:
-        linear-gradient(90deg, rgba(33, 50, 58, 0.055) 1px, transparent 1px),
-        linear-gradient(0deg, rgba(33, 50, 58, 0.045) 1px, transparent 1px),
-        radial-gradient(circle at 50% 42%, rgba(90, 59, 215, 0.12), transparent 48%),
-        linear-gradient(145deg, rgba(255, 255, 255, 0.86), rgba(238, 244, 242, 0.92));
-    border-color: rgba(27, 39, 45, 0.12);
-    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.5), 0 18px 44px rgba(31, 43, 50, 0.08);
+        linear-gradient(90deg, rgba(18, 34, 43, 0.055) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(18, 34, 43, 0.045) 1px, transparent 1px),
+        radial-gradient(circle at 50% 42%, rgba(79, 59, 215, 0.11), transparent 48%),
+        linear-gradient(145deg, rgba(255, 255, 255, 0.88), rgba(238, 245, 247, 0.94));
+    border-color: rgba(22, 34, 42, 0.115);
+    box-shadow: inset 0 0 40px rgba(255, 255, 255, 0.55), 0 18px 44px rgba(31, 42, 50, 0.08);
 }
 
 .map-node {
-    color: #111820;
+    color: #111821;
     background: rgba(255, 255, 255, 0.94);
-    border-color: rgba(27, 39, 45, 0.14);
-    box-shadow: 0 18px 36px rgba(31, 43, 50, 0.1);
+    border-color: rgba(22, 34, 42, 0.13);
+    box-shadow: 0 18px 36px rgba(31, 42, 50, 0.1);
+    font-weight: 500;
 }
 
 .map-node.core {
     background:
-        linear-gradient(135deg, rgba(90, 59, 215, 0.13), rgba(8, 123, 148, 0.11)),
-        rgba(255, 255, 255, 0.96);
-    border-color: rgba(90, 59, 215, 0.3);
+        linear-gradient(135deg, rgba(79, 59, 215, 0.13), rgba(8, 124, 149, 0.1)),
+        rgba(255, 255, 255, 0.97);
+    border-color: rgba(79, 59, 215, 0.28);
+}
+
+.map-node.core strong {
+    font-size: 21px;
+    font-weight: 560;
 }
 
 .line-horizontal {
-    background: rgba(159, 121, 49, 0.36);
+    background: rgba(158, 122, 52, 0.34);
 }
 
 .line-vertical {
-    background: rgba(90, 59, 215, 0.36);
+    background: rgba(79, 59, 215, 0.33);
 }
 
 .board-feed {
-    border-color: rgba(27, 39, 45, 0.12);
+    border-color: rgba(22, 34, 42, 0.11);
 }
 
 .board-feed div {
     background: rgba(255, 255, 255, 0.68);
 }
 
+.editorial-stage,
+.section-block {
+    margin-top: 24px;
+    padding: 30px;
+}
+
+.stage-main h2,
+.section-heading h2,
+.final-cta h2 {
+    max-width: 980px;
+    color: #111821;
+    font-size: 34px;
+    font-weight: 560;
+    line-height: 1.12;
+}
+
+.stage-main p,
+.section-heading p {
+    color: var(--muted);
+    font-size: 16px;
+}
+
+.stage-grid,
+.ecosystem-grid,
+.editorial-grid,
+.product-grid,
+.tools-board,
+.proof-grid,
+.process-grid,
+.video-grid {
+    gap: 14px;
+    margin-top: 26px;
+}
+
+.stage-grid article,
+.ecosystem-card,
+.editorial-grid article,
+.product-grid article,
+.proof-grid article,
+.tools-board a,
+.process-grid article,
+.video-card {
+    min-height: 150px;
+    padding: 20px;
+}
+
 .ecosystem-card.flagship {
-    border-color: rgba(90, 59, 215, 0.28);
+    border-color: rgba(79, 59, 215, 0.25);
     background:
-        linear-gradient(135deg, rgba(90, 59, 215, 0.12), rgba(159, 121, 49, 0.08)),
+        linear-gradient(135deg, rgba(79, 59, 215, 0.11), rgba(158, 122, 52, 0.07)),
         rgba(255, 255, 255, 0.94);
 }
 
-/* Right rail: keep the dark market terminal exactly as the visual anchor. */
+.video-lab {
+    overflow: hidden;
+}
+
+.video-grid {
+    display: grid;
+    grid-template-columns: 1.25fr 1fr 1fr;
+}
+
+.video-card {
+    display: grid;
+    gap: 14px;
+}
+
+.video-card.featured {
+    border-color: rgba(79, 59, 215, 0.24);
+}
+
+.video-frame {
+    position: relative;
+    display: grid;
+    align-content: end;
+    min-height: 220px;
+    padding: 18px;
+    border: 1px solid rgba(22, 34, 42, 0.12);
+    border-radius: var(--radius);
+    overflow: hidden;
+    background:
+        linear-gradient(90deg, rgba(255,255,255,0.09) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+        radial-gradient(circle at 70% 20%, rgba(8, 124, 149, 0.36), transparent 34%),
+        radial-gradient(circle at 20% 12%, rgba(79, 59, 215, 0.44), transparent 30%),
+        linear-gradient(135deg, #101722, #182535 48%, #071017);
+    background-size: 28px 28px, 28px 28px, auto, auto, auto;
+    color: #ffffff;
+}
+
+.video-frame::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0;
+    height: 48%;
+    background: linear-gradient(0deg, rgba(6, 10, 16, 0.82), transparent);
+}
+
+.video-frame strong,
+.video-frame small {
+    position: relative;
+    z-index: 1;
+    color: #ffffff;
+}
+
+.video-frame small {
+    color: rgba(255,255,255,0.72);
+    font-size: 11px;
+    text-transform: uppercase;
+}
+
+.play-core {
+    position: absolute;
+    left: 18px;
+    top: 18px;
+    z-index: 1;
+    width: 46px;
+    height: 46px;
+    border: 1px solid rgba(255,255,255,0.32);
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+}
+
+.play-core::after {
+    content: "";
+    position: absolute;
+    left: 18px;
+    top: 13px;
+    border-left: 14px solid #ffffff;
+    border-top: 9px solid transparent;
+    border-bottom: 9px solid transparent;
+}
+
+.video-card h3 {
+    font-size: 21px;
+    line-height: 1.12;
+}
+
+.video-card p {
+    font-size: 14px;
+}
+
+.process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.process-grid article span {
+    display: block;
+    font-size: 12px;
+}
+
+.process-grid strong {
+    display: block;
+    margin-top: 14px;
+    font-size: 22px;
+}
+
+.process-grid p {
+    margin-top: 12px;
+    font-size: 14px;
+}
+
+.institutional-strip {
+    display: flex;
+    justify-content: space-between;
+    gap: 18px;
+    align-items: center;
+    margin-top: 24px;
+    padding: 18px;
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+}
+
+.institutional-strip p {
+    margin-top: 6px;
+}
+
+/* Right rail keeps the dark market terminal as the contrast anchor. */
 .live-panel {
     --bg: #03070d;
     --bg-soft: #071018;
@@ -356,15 +695,12 @@ strong,
     box-shadow: 0 24px 86px rgba(0, 5, 10, 0.58);
 }
 
+.live-panel .rail-head strong,
 .live-panel h1,
 .live-panel h2,
 .live-panel h3,
-.live-panel strong,
-.live-panel .rail-head span,
-.live-panel .tax-box span,
-.live-panel .live-stream span,
-.live-panel .mission-grid span,
-.live-panel .operations-feed > span {
+.live-panel strong {
+    color: var(--text);
     text-shadow: 0 1px 0 rgba(0, 0, 0, 0.18);
 }
 
@@ -420,12 +756,94 @@ strong,
     background: rgba(5, 11, 18, 0.78);
 }
 
-@media (max-width: 1040px) {
-    .top-nav {
-        background: rgba(248, 249, 245, 0.98);
+@media (min-width: 1041px) and (max-width: 1320px) {
+    .top-shell {
+        grid-template-columns: 180px minmax(0, 1fr);
     }
 
-    .live-panel {
-        order: 3;
+    .top-nav > a,
+    .nav-item > a,
+    .top-cta {
+        padding: 0 8px;
+        font-size: 11px;
+    }
+
+    .hero-command h1 {
+        font-size: 36px;
+    }
+
+    .video-grid,
+    .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
+@media (max-width: 1040px) {
+    .top-shell {
+        grid-template-columns: 1fr auto;
+    }
+
+    .top-nav {
+        background: rgba(248, 250, 249, 0.98);
+    }
+
+    .client-login {
+        border-top-color: rgba(22, 34, 42, 0.12);
+    }
+
+    .hero-copy,
+    .control-board,
+    .impact-stats {
+        grid-column: 1;
+        grid-row: auto;
+    }
+
+    .hero-command {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+
+    .video-grid,
+    .process-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 720px) {
+    .portal-layout {
+        padding: 10px;
+    }
+
+    .hero-command,
+    .editorial-stage,
+    .section-block {
+        padding: 20px;
+    }
+
+    .hero-command h1 {
+        font-size: 31px;
+    }
+
+    .hero-pathways,
+    .institutional-pathways,
+    .impact-stats,
+    .stage-grid,
+    .ecosystem-grid,
+    .editorial-grid,
+    .product-grid,
+    .proof-grid,
+    .tools-board,
+    .market-stack {
+        grid-template-columns: 1fr;
+    }
+
+    .stage-main h2,
+    .section-heading h2,
+    .final-cta h2 {
+        font-size: 27px;
+    }
+
+    .institutional-strip {
+        display: grid;
     }
 }
