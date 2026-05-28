@@ -169,6 +169,11 @@ strong,
 .hero-command h1 {
     color: #f8fbf8;
     font-weight: 700;
+    max-width: 680px;
+    font-size: 34px;
+    line-height: 1.04;
+    text-transform: none;
+    white-space: normal;
 }
 
 .hero-copy {
@@ -176,6 +181,70 @@ strong,
     grid-row: 1;
     align-self: start;
     padding-top: 18px;
+}
+
+.hero-command p {
+    max-width: 660px;
+    margin-top: 16px;
+    color: #b9c7c6;
+    font-size: 16px;
+}
+
+.hero-pathways {
+    display: grid;
+    gap: 8px;
+    margin-top: 22px;
+}
+
+.hero-pathways a {
+    display: block;
+    padding: 13px 14px;
+    border: 1px solid rgba(150, 180, 188, 0.16);
+    border-radius: var(--radius);
+    background:
+        linear-gradient(115deg, rgba(92, 55, 178, 0.14), rgba(8, 31, 38, 0.16)),
+        rgba(7, 14, 22, 0.84);
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.035);
+}
+
+.hero-pathways a:hover {
+    border-color: rgba(110, 67, 217, 0.44);
+    background:
+        linear-gradient(115deg, rgba(110, 67, 217, 0.2), rgba(25, 91, 102, 0.18)),
+        rgba(8, 16, 25, 0.92);
+}
+
+.hero-pathways span {
+    display: block;
+    color: #c8b878;
+    font-size: 10px;
+    font-weight: 620;
+    text-transform: uppercase;
+}
+
+.hero-pathways strong {
+    display: block;
+    margin-top: 5px;
+    color: var(--text);
+    font-size: 15px;
+    font-weight: 650;
+    line-height: 1.14;
+}
+
+.hero-pathways small {
+    display: block;
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: 12px;
+    line-height: 1.35;
+}
+
+.profile-chip {
+    margin-top: 20px;
+}
+
+.hero-actions {
+    margin-top: 20px;
 }
 
 .control-board {
@@ -227,6 +296,7 @@ strong,
 .section-heading h2,
 .final-cta h2 {
     font-weight: 700;
+    max-width: 900px;
 }
 
 .stage-grid strong,
@@ -249,6 +319,30 @@ strong,
 .mission-grid span,
 .operations-feed > span {
     color: #c8b878;
+}
+
+.editorial-stage,
+.section-block {
+    margin-top: 24px;
+}
+
+.stage-grid,
+.ecosystem-grid,
+.editorial-grid,
+.product-grid,
+.tools-board,
+.proof-grid {
+    gap: 14px;
+    margin-top: 26px;
+}
+
+.stage-grid article,
+.ecosystem-card,
+.editorial-grid article,
+.product-grid article,
+.proof-grid article,
+.tools-board a {
+    padding: 20px;
 }
 
 .radar-lead {
@@ -481,5 +575,9 @@ strong,
 
     .hero-copy {
         padding-top: 0;
+    }
+
+    .hero-command h1 {
+        font-size: 30px;
     }
 }
