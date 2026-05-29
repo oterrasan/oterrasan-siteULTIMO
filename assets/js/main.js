@@ -1,9 +1,7 @@
 // Terrasan global runtime polish.
 (() => {
     const legacy = "https://cdn.jsdelivr.net/gh/oterrasan/oterrasan-siteULTIMO@a61ee033e89289651cdeb032fbe2dc1729ea5dfa/assets/js/main.js";
-    const replaceBrand = (value) => String(value || "")
-        .replace(/TERRANZAN/g, "TERRASAN")
-        .replace(/Terranzan/g, "Terrasan");
+    const replaceBrand = (value) => String(value || "").replace(/TERRANZAN/g, "TERRASAN").replace(/Terranzan/g, "Terrasan");
     const attrs = ["aria-label", "alt", "title", "content", "placeholder"];
 
     function normalizeTerrasanName(root = document) {
@@ -37,11 +35,7 @@
             const ribbon = document.createElement("div");
             ribbon.className = "executive-ribbon";
             ribbon.setAttribute("aria-label", "Capacidades institucionais do grupo");
-            ribbon.innerHTML = `
-                <div><span>Enterprise scope</span><strong>midia, capital, tecnologia e produtos</strong></div>
-                <div><span>Distribution engine</span><strong>conteudo, redes, dados e relacionamento</strong></div>
-                <div><span>AI operations</span><strong>automacao, CRM, agentes e dashboards</strong></div>
-            `;
+            ribbon.innerHTML = `<div><span>Enterprise scope</span><strong>midia, capital, tecnologia e produtos</strong></div><div><span>Distribution engine</span><strong>conteudo, redes, dados e relacionamento</strong></div><div><span>AI operations</span><strong>automacao, CRM, agentes e dashboards</strong></div>`;
             intro.after(ribbon);
         }
         if (strip && !strip.textContent.includes("Client platforms")) {
@@ -53,15 +47,24 @@
 
     function applyNavigationPolish() {
         const brandSmall = document.querySelector(".top-brand small");
-        if (brandSmall) brandSmall.textContent = "capital, mídias e tecnologias";
+        if (brandSmall) brandSmall.textContent = "capital, midias e tecnologias";
         document.querySelectorAll(".top-nav a").forEach((link) => {
             const text = link.textContent.trim();
             if (text === "Tecnologia") link.textContent = "Tecnologias";
-            if (text === "Midia" || text === "Mídia") link.textContent = "Mídias";
+            if (text === "Midia" || text === "Mídia") link.textContent = "Midias";
             if (text === "Agendar") link.textContent = "Solicitar";
         });
         document.querySelectorAll(".mega-menu strong").forEach((node) => {
             if (node.textContent.trim() === "Visao institucional") node.textContent = "Institucional";
+        });
+    }
+
+    function applyInternalNavigation() {
+        const targets = [["Grupo","grupo.html"],["Empresas","grupo.html"],["Tecnologias","tecnologias.html"],["Ferramentas","ferramentas.html"],["Contato","contato.html"],["Solicitar","contato.html"],["O Valor Capital","ovc.html"],["Terra Seguros","lions-terra.html"],["Lions Corretora","lions-terra.html"],["Lions / Life","lions-terra.html"],["Dominion","dominion.html"],["Editorial","editorial.html"],["Infoprodutos","editorial.html"],["OVC Inteligencia","ovc-inteligencia.html"],["Produtos digitais","editorial.html"]];
+        document.querySelectorAll("a").forEach((link) => {
+            const label = link.textContent.replace(/\s+/g, " ").trim();
+            const match = targets.find(([key]) => label === key || label.includes(key));
+            if (match) link.href = match[1];
         });
     }
 
@@ -70,20 +73,7 @@
         const root = location.pathname.includes("/solucoes/") ? "../" : "";
         const footer = document.createElement("footer");
         footer.className = "carbon-footer";
-        footer.innerHTML = `
-            <div class="carbon-footer-inner">
-                <div class="carbon-footer-brand">
-                    <span class="brand-mark">GT</span>
-                    <div><strong>Grupo Terrasan</strong><p>Holding operacional de tecnologia, capital, mídias e produtos digitais. Um ecossistema para audiência, relacionamento, inteligência e escala.</p></div>
-                </div>
-                <div class="carbon-footer-grid" aria-label="Mapa institucional do Grupo Terrasan">
-                    <section><span>Institucional</span><a href="${root}index.html#grupo">Grupo</a><a href="${root}index.html#ecossistema">Empresas</a><a href="${root}index.html#governanca">Governança</a></section>
-                    <section><span>Operações</span><a href="${root}index.html#ecossistema">O Valor Capital</a><a href="${root}lions.html">Terra Seguros</a><a href="${root}jarvis.html">JARVIS CRM</a></section>
-                    <section><span>Inteligência</span><a href="${root}index.html#radar">Mídias</a><a href="${root}index.html#video">Video center</a><a href="${root}index.html#produtos">Produtos digitais</a></section>
-                    <section><span>Acesso</span><a href="${root}index.html#ferramentas">Ferramentas</a><a href="${root}contato.html">Solicitar</a><a href="${root}jarvis.html">Clientes</a></section>
-                </div>
-                <div class="carbon-footer-bottom"><span>Grupo Terrasan Enterprise System</span><span>Capital | mídias | tecnologias | inteligência aplicada</span></div>
-            </div>`;
+        footer.innerHTML = `<div class="carbon-footer-inner"><div class="carbon-footer-brand"><span class="brand-mark">GT</span><div><strong>Grupo Terrasan</strong><p>Holding operacional de tecnologia, capital, midias e produtos digitais. Um ecossistema para audiencia, relacionamento, inteligencia e escala.</p></div></div><div class="carbon-footer-grid" aria-label="Mapa institucional do Grupo Terrasan"><section><span>Institucional</span><a href="${root}grupo.html">Grupo</a><a href="${root}grupo.html">Empresas</a><a href="${root}grupo.html">Governanca</a></section><section><span>Operacoes</span><a href="${root}ovc.html">O Valor Capital</a><a href="${root}lions-terra.html">Terra Seguros</a><a href="${root}lions-terra.html">Lions Corretora</a><a href="${root}dominion.html">Dominion</a><a href="${root}jarvis.html">JARVIS CRM</a></section><section><span>Inteligencia</span><a href="${root}ovc.html">Midias</a><a href="${root}editorial.html">Editorial</a><a href="${root}ovc-inteligencia.html">OVC Inteligencia</a></section><section><span>Acesso</span><a href="${root}ferramentas.html">Ferramentas</a><a href="${root}contato.html">Solicitar</a><a href="${root}jarvis.html">Clientes</a></section></div><div class="carbon-footer-bottom"><span>Grupo Terrasan Enterprise System</span><span>Capital | midias | tecnologias | inteligencia aplicada</span></div></div>`;
         document.body.append(footer);
     }
 
@@ -92,13 +82,7 @@
     window.applyNavigationPolish = applyNavigationPolish;
     window.ensureCarbonFooter = ensureCarbonFooter;
 
-    const runPolish = () => {
-        applyNavigationPolish();
-        applyCorporateScale();
-        ensureCarbonFooter();
-        normalizeTerrasanName();
-    };
-
+    const runPolish = () => { applyNavigationPolish(); applyCorporateScale(); ensureCarbonFooter(); applyInternalNavigation(); normalizeTerrasanName(); };
     if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", runPolish, { once: true });
     else runPolish();
     window.addEventListener("load", runPolish);
