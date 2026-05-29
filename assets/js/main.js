@@ -25,17 +25,52 @@
         });
     }
 
-    window.normalizeTerrasanName = normalizeTerrasanName;
+    function applyCorporateScale() {
+        const eyebrow = document.querySelector(".hero-copy .eyebrow");
+        const title = document.querySelector(".hero-command h1");
+        const intro = document.querySelector(".hero-copy > p");
+        const strip = document.querySelector(".enterprise-strip");
 
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", () => normalizeTerrasanName(), { once: true });
-    } else {
-        normalizeTerrasanName();
+        if (eyebrow) eyebrow.textContent = "Grupo Terrasan | corporate operating system";
+        if (title) title.textContent = "Um grupo de tecnologia, capital e midia desenhado para operar em escala institucional.";
+        if (intro) intro.textContent = "Uma arquitetura corporativa que conecta audiencia, inteligencia artificial, produtos financeiros, CRM e ativos digitais em um mesmo sistema de crescimento.";
+
+        if (intro && !document.querySelector(".executive-ribbon")) {
+            const ribbon = document.createElement("div");
+            ribbon.className = "executive-ribbon";
+            ribbon.setAttribute("aria-label", "Capacidades institucionais do grupo");
+            ribbon.innerHTML = `
+                <div><span>Enterprise scope</span><strong>midia, capital, tecnologia e produtos</strong></div>
+                <div><span>Distribution engine</span><strong>conteudo, redes, dados e relacionamento</strong></div>
+                <div><span>AI operations</span><strong>automacao, CRM, agentes e dashboards</strong></div>
+            `;
+            intro.after(ribbon);
+        }
+
+        if (strip && !strip.textContent.includes("Client platforms")) {
+            const item = document.createElement("span");
+            item.textContent = "Client platforms";
+            strip.append(item);
+        }
     }
 
-    window.addEventListener("load", () => normalizeTerrasanName());
-    setTimeout(normalizeTerrasanName, 250);
-    setTimeout(normalizeTerrasanName, 1500);
+    window.normalizeTerrasanName = normalizeTerrasanName;
+    window.applyCorporateScale = applyCorporateScale;
+
+    const runPolish = () => {
+        applyCorporateScale();
+        normalizeTerrasanName();
+    };
+
+    if (document.readyState === "loading") {
+        document.addEventListener("DOMContentLoaded", runPolish, { once: true });
+    } else {
+        runPolish();
+    }
+
+    window.addEventListener("load", runPolish);
+    setTimeout(runPolish, 250);
+    setTimeout(runPolish, 1500);
 
     const startObserver = () => {
         if (!document.body) return;
