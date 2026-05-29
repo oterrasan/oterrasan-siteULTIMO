@@ -1,3 +1,4 @@
+// Terrasan global runtime polish.
 (() => {
     const legacy = "https://cdn.jsdelivr.net/gh/oterrasan/oterrasan-siteULTIMO@a61ee033e89289651cdeb032fbe2dc1729ea5dfa/assets/js/main.js";
     const replaceBrand = (value) => String(value || "")
