@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex,nofollow" />
+    <title>Valor Command CRM v2 | Preview</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body data-theme="dark">
+    <aside class="sidebar">
+      <div class="brand">
+        <span>VC</span>
+        <div>
+          <strong>Valor Command</strong>
+          <small>CRM / ERP standalone</small>
+        </div>
+      </div>
+      <nav>
+        <button class="active">Cockpit</button>
+        <button>Empresas 360</button>
+        <button>Contatos</button>
+        <button>Relacionamento</button>
+        <button>Pipeline</button>
+        <button>Propostas</button>
+        <button>Contratos</button>
+        <button>Faturamento</button>
+        <button>Suporte</button>
+        <button>Arquivos</button>
+        <button>IA e Inteligencia</button>
+        <button>Usuarios e Acessos</button>
+      </nav>
+      <div class="boundary">
+        <span>Preview temporario</span>
+        <strong>/crm-v2</strong>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="search">
+          <span>Busca</span>
+          <input id="searchInput" placeholder="empresa, cidade, CNPJ, ID legado..." />
+        </div>
+        <div class="themes">
+          <button data-theme="dark" class="active">Escuro</button>
+          <button data-theme="light">Claro</button>
+          <button data-theme="blue">Azul</button>
+          <button data-theme="contrast">Contraste</button>
+        </div>
+      </header>
+
+      <section class="kpis">
+        <article>
+          <span>Empresas Merlin</span>
+          <strong id="kpiCompanies">-</strong>
+        </article>
+        <article>
+          <span>Contatos</span>
+          <strong id="kpiContacts">-</strong>
+        </article>
+        <article>
+          <span>Vinculos</span>
+          <strong id="kpiLinks">-</strong>
+        </article>
+        <article>
+          <span>Status</span>
+          <strong id="kpiStatus">Carregando</strong>
+        </article>
+      </section>
+
+      <section class="workgrid">
+        <section class="tablePanel">
+          <div class="panelHead">
+            <div>
+              <span>Base completa</span>
+              <strong>Empresas 360</strong>
+            </div>
+            <small id="resultCount">-</small>
+          </div>
+          <div id="companyList" class="companyList"></div>
+        </section>
+
+        <section class="detailPanel">
+          <div id="companyDetail" class="companyDetail empty">
+            Selecione uma empresa para abrir a ficha.
+          </div>
+        </section>
+
+        <aside class="aiPanel">
+          <div class="panelHead">
+            <div>
+              <span>Copiloto</span>
+              <strong>IA contextual</strong>
+            </div>
+          </div>
+          <div class="aiCard">
+            <strong>Pronto para plugar API</strong>
+            <p>O painel ja esta preparado para usar OpenAI, Gemini ou outro provider via backend, sem expor chave no navegador.</p>
+          </div>
+          <div class="aiCard">
+            <strong>Relacionamento</strong>
+            <p>Subcontatos, datas pessoais, concorrentes e relatos ficam previstos no schema do banco.</p>
+          </div>
+        </aside>
+      </section>
+    </main>
+
+    <script src="./app.js"></script>
+  </body>
+</html>
