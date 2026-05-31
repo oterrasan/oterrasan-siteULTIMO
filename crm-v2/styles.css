@@ -1,0 +1,413 @@
+:root {
+  --bg: #070908;
+  --panel: #101413;
+  --panel-2: #151b19;
+  --text: #edf4ef;
+  --muted: #97a49d;
+  --line: #26302c;
+  --accent: #49d5d1;
+  --accent-2: #f2bd55;
+  --good: #72e188;
+  --danger: #ff6d61;
+  --shadow: rgba(0, 0, 0, 0.35);
+}
+
+body[data-theme="light"] {
+  --bg: #f6f8fb;
+  --panel: #ffffff;
+  --panel-2: #eef3f7;
+  --text: #14201c;
+  --muted: #5d6a64;
+  --line: #d9e2e8;
+  --accent: #1174d8;
+  --accent-2: #0f9f77;
+  --good: #168656;
+  --danger: #d13b35;
+  --shadow: rgba(22, 34, 43, 0.1);
+}
+
+body[data-theme="blue"] {
+  --bg: #07101c;
+  --panel: #0d1b2f;
+  --panel-2: #12253d;
+  --text: #edf6ff;
+  --muted: #9db2c8;
+  --line: #203954;
+  --accent: #67b7ff;
+  --accent-2: #ffc857;
+}
+
+body[data-theme="contrast"] {
+  --bg: #050505;
+  --panel: #111111;
+  --panel-2: #1c1c1c;
+  --text: #ffffff;
+  --muted: #c9c9c9;
+  --line: #3a3a3a;
+  --accent: #00e5ff;
+  --accent-2: #ffe75c;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  letter-spacing: 0;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+body {
+  display: grid;
+  grid-template-columns: 258px minmax(0, 1fr);
+}
+
+.sidebar {
+  min-height: 100vh;
+  padding: 18px 14px;
+  border-right: 1px solid var(--line);
+  background: linear-gradient(180deg, var(--panel), color-mix(in srgb, var(--panel), #000 18%));
+  position: sticky;
+  top: 0;
+}
+
+.brand {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  border-radius: 8px;
+  margin-bottom: 18px;
+}
+
+.brand span {
+  width: 40px;
+  height: 40px;
+  display: grid;
+  place-items: center;
+  border: 1px solid color-mix(in srgb, var(--accent), transparent 35%);
+  color: var(--accent);
+  font-weight: 900;
+}
+
+.brand strong,
+.brand small {
+  display: block;
+}
+
+.brand small,
+.panelHead span,
+.kpis span,
+.boundary span {
+  color: var(--muted);
+  font-size: 12px;
+}
+
+nav {
+  display: grid;
+  gap: 6px;
+}
+
+nav button,
+.themes button {
+  border: 1px solid transparent;
+  background: transparent;
+  color: var(--muted);
+  border-radius: 8px;
+}
+
+nav button {
+  padding: 10px 12px;
+  text-align: left;
+}
+
+nav button.active,
+nav button:hover,
+.themes button.active,
+.themes button:hover {
+  border-color: var(--line);
+  background: var(--panel-2);
+  color: var(--text);
+}
+
+.boundary {
+  margin-top: 18px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 12px;
+  background: var(--panel-2);
+}
+
+.boundary strong {
+  display: block;
+  margin-top: 4px;
+  color: var(--accent);
+}
+
+.main {
+  padding: 18px;
+  min-width: 0;
+}
+
+.topbar {
+  display: grid;
+  grid-template-columns: minmax(320px, 1fr) auto;
+  gap: 14px;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.search {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  padding: 10px 12px;
+}
+
+.search span {
+  color: var(--accent);
+  font-weight: 700;
+  font-size: 12px;
+  text-transform: uppercase;
+}
+
+.search input {
+  border: 0;
+  outline: 0;
+  color: var(--text);
+  background: transparent;
+  width: 100%;
+}
+
+.themes {
+  display: flex;
+  gap: 6px;
+}
+
+.themes button {
+  padding: 9px 11px;
+}
+
+.kpis {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.kpis article,
+.tablePanel,
+.detailPanel,
+.aiPanel {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  border-radius: 8px;
+  box-shadow: 0 12px 30px var(--shadow);
+}
+
+.kpis article {
+  padding: 14px;
+}
+
+.kpis strong {
+  display: block;
+  margin-top: 6px;
+  font-size: 28px;
+}
+
+.workgrid {
+  display: grid;
+  grid-template-columns: minmax(360px, 0.95fr) minmax(420px, 1.15fr) 310px;
+  gap: 14px;
+  align-items: start;
+}
+
+.panelHead {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 14px;
+  border-bottom: 1px solid var(--line);
+}
+
+.panelHead strong {
+  display: block;
+  margin-top: 2px;
+}
+
+.companyList {
+  max-height: calc(100vh - 210px);
+  overflow: auto;
+}
+
+.companyRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 10px;
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid var(--line);
+  background: transparent;
+  color: var(--text);
+  text-align: left;
+  padding: 12px 14px;
+}
+
+.companyRow:hover,
+.companyRow.active {
+  background: var(--panel-2);
+}
+
+.companyRow strong,
+.companyRow span,
+.companyRow small {
+  display: block;
+}
+
+.companyRow span,
+.companyRow small {
+  color: var(--muted);
+  margin-top: 3px;
+}
+
+.tag {
+  align-self: start;
+  padding: 4px 7px;
+  border: 1px solid var(--line);
+  color: var(--accent);
+  border-radius: 999px;
+  font-size: 12px;
+}
+
+.companyDetail {
+  padding: 14px;
+}
+
+.companyDetail.empty {
+  color: var(--muted);
+}
+
+.detailTitle {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  border-bottom: 1px solid var(--line);
+  padding-bottom: 12px;
+  margin-bottom: 12px;
+}
+
+.detailTitle h1 {
+  margin: 0;
+  font-size: 22px;
+}
+
+.detailTitle p {
+  margin: 5px 0 0;
+  color: var(--muted);
+}
+
+.facts {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+  margin-bottom: 14px;
+}
+
+.fact {
+  padding: 10px;
+  background: var(--panel-2);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  min-height: 58px;
+}
+
+.fact span {
+  display: block;
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 4px;
+}
+
+.contacts {
+  display: grid;
+  gap: 8px;
+}
+
+.contactCard,
+.aiCard {
+  padding: 10px;
+  border: 1px solid var(--line);
+  background: var(--panel-2);
+  border-radius: 8px;
+}
+
+.contactCard strong,
+.contactCard span,
+.contactCard small,
+.aiCard strong,
+.aiCard p {
+  display: block;
+}
+
+.contactCard span,
+.contactCard small,
+.aiCard p {
+  color: var(--muted);
+}
+
+.contactCard small {
+  margin-top: 4px;
+}
+
+.aiPanel {
+  padding-bottom: 10px;
+}
+
+.aiCard {
+  margin: 10px;
+}
+
+.aiCard p {
+  margin: 6px 0 0;
+  line-height: 1.45;
+}
+
+@media (max-width: 1180px) {
+  body {
+    grid-template-columns: 1fr;
+  }
+
+  .sidebar {
+    position: relative;
+    min-height: auto;
+  }
+
+  .workgrid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar,
+  .kpis {
+    grid-template-columns: 1fr;
+  }
+}
