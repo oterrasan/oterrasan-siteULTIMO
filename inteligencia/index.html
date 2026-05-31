@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Inteligencia Terrasan | Ferramentas de IA</title>
+  <meta name="description" content="Suite de ferramentas de IA do Grupo Terrasan para texto, produtividade, comunicacao, negocios e criacao visual.">
+  <link rel="canonical" href="https://www.oterrasan.com.br/inteligencia/">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/inteligencia-app.css?v=1">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="/">
+        <span>GT</span>
+        <strong>Terrasan Intelligence</strong>
+        <small>ferramentas, texto e produtividade</small>
+      </a>
+      <nav id="toolNav" class="tool-nav" aria-label="Ferramentas"></nav>
+      <div class="side-footer">
+        <a href="/estudio/">Studio Visual</a>
+        <a href="/ferramentas.html">Ferramentas</a>
+        <a href="/">Grupo Terrasan</a>
+      </div>
+    </aside>
+
+    <main class="workspace">
+      <header class="topbar">
+        <div>
+          <p>Grupo Terrasan / IA operacional</p>
+          <h1>Command Center de produtividade</h1>
+        </div>
+        <div class="status-grid">
+          <span><strong id="toolCount">0</strong> ferramentas</span>
+          <span><strong>FREE</strong> stack</span>
+          <span><strong id="clock">--:--</strong> online</span>
+        </div>
+      </header>
+
+      <section class="hero-panel">
+        <div>
+          <span class="kicker">Suite comercial</span>
+          <h2>Texto, comunicacao, burocracia, negocios e criacao visual em um unico ambiente.</h2>
+          <p>Esta versao roda no dominio do Grupo Terrasan e chama a API local <code>/api/inteligencia</code>. A chave de IA fica exclusivamente nas variaveis de ambiente do projeto Vercel do O Terrasan.</p>
+        </div>
+        <div class="hero-actions">
+          <button type="button" data-jump="reescrever">Comecar por texto</button>
+          <a href="/estudio/">Abrir Studio Visual</a>
+        </div>
+      </section>
+
+      <section class="dashboard-grid" id="dashboard"></section>
+
+      <section class="tool-panel" id="toolPanel" aria-live="polite">
+        <div class="panel-head">
+          <div>
+            <span id="toolCategory">IA</span>
+            <h2 id="toolTitle">Selecione uma ferramenta</h2>
+            <p id="toolDescription">Escolha uma funcao no painel para iniciar.</p>
+          </div>
+          <button type="button" id="clearBtn">Limpar</button>
+        </div>
+        <div id="options" class="options"></div>
+        <div class="editor-grid">
+          <label>
+            <span>Entrada</span>
+            <textarea id="inputText" placeholder="Cole ou escreva seu texto aqui."></textarea>
+          </label>
+          <label>
+            <span>Resultado</span>
+            <textarea id="outputText" readonly placeholder="O resultado aparece aqui."></textarea>
+          </label>
+        </div>
+        <div class="panel-actions">
+          <button type="button" id="runBtn">Executar</button>
+          <button type="button" id="copyBtn">Copiar resultado</button>
+          <span id="statusText"></span>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script src="/assets/js/inteligencia-app.js?v=1"></script>
+</body>
+</html>

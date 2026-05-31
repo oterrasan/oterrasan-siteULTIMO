@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Studio Visual | Grupo Terrasan</title>
+  <meta name="description" content="Editor visual simples do Grupo Terrasan para artes, campanhas e posts.">
+  <link rel="canonical" href="https://www.oterrasan.com.br/estudio/">
+  <link rel="icon" type="image/svg+xml" href="/assets/images/favicon.svg">
+  <link rel="stylesheet" href="/assets/css/estudio-app.css?v=1">
+</head>
+<body>
+  <main class="studio-shell">
+    <aside class="studio-side">
+      <a class="brand" href="/inteligencia/"><span>GT</span><strong>Studio Visual</strong><small>Grupo Terrasan</small></a>
+      <label>Modelo
+        <select id="templateSelect">
+          <option value="executive">Executivo premium</option>
+          <option value="market">Mercado financeiro</option>
+          <option value="health">Saude e seguros</option>
+          <option value="tech">Tecnologia e IA</option>
+        </select>
+      </label>
+      <label>Titulo<textarea id="titleText">Proteja sua renda, sua familia e seu patrimonio.</textarea></label>
+      <label>Subtitulo<textarea id="subtitleText">Consultoria financeira, seguros, tecnologia e inteligencia aplicada pelo Grupo Terrasan.</textarea></label>
+      <label>Imagem<input id="imageInput" type="file" accept="image/*"></label>
+      <div class="buttons">
+        <button id="renderBtn">Atualizar arte</button>
+        <button id="downloadPng">Baixar PNG</button>
+        <button id="downloadJpg">Baixar JPG</button>
+      </div>
+      <a class="back" href="/inteligencia/">Voltar para Inteligencia</a>
+    </aside>
+    <section class="canvas-wrap">
+      <canvas id="artCanvas" width="1080" height="1080" aria-label="Arte editavel"></canvas>
+    </section>
+  </main>
+  <script src="/assets/js/estudio-app.js?v=1"></script>
+</body>
+</html>
