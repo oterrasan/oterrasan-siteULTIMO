@@ -44,12 +44,30 @@ async function readBody(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
-async function callOpenAI(prompt, key) {
+async function getStoredKeys() {
+  const url = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || "";
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || "";
+  if (!url || !key) return {};
+  try {
+    const endpoint = `${url.replace(/\/$/, "")}/rest/v1/config?select=key,value&key=in.(OPENAI_API_KEY,GEMINI_API_KEY,GOOGLE_API_KEY,GROQ_API_KEY,AI_PROVIDER,OPENAI_MODEL)`;
+    const r = await fetch(endpoint, { headers: { apikey: key, Authorization: `Bearer ${key}` } });
+    if (!r.ok) return {};
+    const rows = await r.json().catch(() => []);
+    return (rows || []).reduce((acc, row) => {
+      if (row?.key && row?.value) acc[row.key] = row.value;
+      return acc;
+    }, {});
+  } catch (_) {
+    return {};
+  }
+}
+
+async function callOpenAI(prompt, key, model) {
   const r = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
     body: JSON.stringify({
-      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+      model: model || "gpt-4o-mini",
       messages: [
         { role: "system", content: "Voce escreve em portugues brasileiro claro, util e profissional. Retorne respostas prontas para uso." },
         { role: "user", content: prompt }
@@ -79,17 +97,19 @@ async function callGroq(prompt, key) {
 }
 
 async function callAI(prompt) {
-  const provider = String(process.env.AI_PROVIDER || "auto").toLowerCase();
-  const openaiKey = process.env.OPENAI_API_KEY || "";
-  const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";
-  const groqKey = process.env.GROQ_API_KEY || "";
+  const stored = await getStoredKeys();
+  const provider = String(process.env.AI_PROVIDER || stored.AI_PROVIDER || "auto").toLowerCase();
+  const openaiKey = process.env.OPENAI_API_KEY || stored.OPENAI_API_KEY || "";
+  const openaiModel = process.env.OPENAI_MODEL || stored.OPENAI_MODEL || "gpt-4o-mini";
+  const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || stored.GEMINI_API_KEY || stored.GOOGLE_API_KEY || "";
+  const groqKey = process.env.GROQ_API_KEY || stored.GROQ_API_KEY || "";
   const attempts = [];
 
-  if ((provider === "auto" || provider === "openai") && openaiKey) attempts.push(() => callOpenAI(prompt, openaiKey));
+  if ((provider === "auto" || provider === "openai") && openaiKey) attempts.push(() => callOpenAI(prompt, openaiKey, openaiModel));
   if ((provider === "auto" || provider === "gemini") && geminiKey) attempts.push(() => callGemini(prompt, geminiKey));
   if ((provider === "auto" || provider === "groq") && groqKey) attempts.push(() => callGroq(prompt, groqKey));
 
-  if (!attempts.length) throw new Error("OPENAI_API_KEY nao configurada no projeto O Terrasan");
+  if (!attempts.length) throw new Error("OPENAI_API_KEY nao configurada no projeto O Terrasan ou na tabela config");
 
   let lastError;
   for (const attempt of attempts) {
