@@ -44,6 +44,25 @@ async function readBody(req) {
   return raw ? JSON.parse(raw) : {};
 }
 
+async function callOpenAI(prompt, key) {
+  const r = await fetch("https://api.openai.com/v1/chat/completions", {
+    method: "POST",
+    headers: { "Content-Type": "application/json", Authorization: `Bearer ${key}` },
+    body: JSON.stringify({
+      model: process.env.OPENAI_MODEL || "gpt-4o-mini",
+      messages: [
+        { role: "system", content: "Voce escreve em portugues brasileiro claro, util e profissional. Retorne respostas prontas para uso." },
+        { role: "user", content: prompt }
+      ],
+      temperature: 0.62,
+      max_tokens: 2200
+    })
+  });
+  const data = await r.json().catch(() => ({}));
+  if (!r.ok) throw new Error(data.error?.message || "Falha na OpenAI");
+  return data.choices?.[0]?.message?.content?.trim() || "";
+}
+
 async function callGemini(prompt, key) {
   const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${key}`;
   const r = await fetch(url, { method: "POST", headers: { "Content-Type": "application/json" }, body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }], generationConfig: { temperature: 0.62, maxOutputTokens: 2200 } }) });
@@ -59,6 +78,27 @@ async function callGroq(prompt, key) {
   return data.choices?.[0]?.message?.content?.trim() || "";
 }
 
+async function callAI(prompt) {
+  const provider = String(process.env.AI_PROVIDER || "auto").toLowerCase();
+  const openaiKey = process.env.OPENAI_API_KEY || "";
+  const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";
+  const groqKey = process.env.GROQ_API_KEY || "";
+  const attempts = [];
+
+  if ((provider === "auto" || provider === "openai") && openaiKey) attempts.push(() => callOpenAI(prompt, openaiKey));
+  if ((provider === "auto" || provider === "gemini") && geminiKey) attempts.push(() => callGemini(prompt, geminiKey));
+  if ((provider === "auto" || provider === "groq") && groqKey) attempts.push(() => callGroq(prompt, groqKey));
+
+  if (!attempts.length) throw new Error("OPENAI_API_KEY nao configurada no projeto O Terrasan");
+
+  let lastError;
+  for (const attempt of attempts) {
+    try { return await attempt(); }
+    catch (err) { lastError = err; }
+  }
+  throw lastError || new Error("Falha ao processar IA");
+}
+
 module.exports = async function handler(req, res) {
   if (req.method === "OPTIONS") return send(res, 200, { ok: true });
   if (req.method !== "POST") return send(res, 405, { ok: false, error: "Use POST" });
@@ -67,12 +107,7 @@ module.exports = async function handler(req, res) {
     if (!tool || !TOOLS[tool]) return send(res, 400, { ok: false, error: "Ferramenta desconhecida" });
     if (!text || !String(text).trim()) return send(res, 400, { ok: false, error: "Informe um texto" });
     const prompt = TOOLS[tool](String(text).trim(), options || {});
-    const geminiKey = process.env.GEMINI_API_KEY || process.env.GOOGLE_API_KEY || "";
-    const groqKey = process.env.GROQ_API_KEY || "";
-    let result = "";
-    if (geminiKey) result = await callGemini(prompt, geminiKey);
-    else if (groqKey) result = await callGroq(prompt, groqKey);
-    else return send(res, 503, { ok: false, error: "GEMINI_API_KEY nao configurada no projeto O Terrasan" });
+    const result = await callAI(prompt);
     return send(res, 200, { ok: true, result });
   } catch (err) {
     return send(res, 500, { ok: false, error: err.message || "Erro interno" });
