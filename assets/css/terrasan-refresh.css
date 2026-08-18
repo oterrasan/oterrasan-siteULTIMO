@@ -1,0 +1,413 @@
+/* Grupo Terrasan blue ecosystem refresh */
+:root {
+  --purple: #153f91;
+  --violet: #2f73ff;
+  --petrol: #0b55b8;
+  --green: #2f73ff;
+  --brand-blue: #1f65e6;
+  --brand-cyan: #72c7ff;
+  --brand-navy: #050e24;
+  --brand-ice: #eef5ff;
+}
+
+body,
+.enterprise-body {
+  background:
+    linear-gradient(90deg, rgba(23, 79, 170, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(23, 79, 170, 0.045) 1px, transparent 1px),
+    radial-gradient(circle at 12% 8%, rgba(31, 101, 230, 0.15), transparent 32%),
+    radial-gradient(circle at 88% 16%, rgba(114, 199, 255, 0.12), transparent 34%),
+    linear-gradient(135deg, #f9fbff 0%, #edf4ff 48%, #dfeaf8 100%);
+}
+
+.enterprise-header {
+  background: rgba(247, 251, 255, 0.92);
+  border-bottom-color: rgba(11, 42, 96, 0.12);
+}
+
+.enterprise-nav a:hover,
+.corp-nav a:hover,
+.corp-nav a.active {
+  border-color: rgba(31, 101, 230, 0.28);
+  background: #eaf2ff;
+}
+
+.enterprise-nav .nav-action,
+.brand-mark,
+.corp-nav .client-entry,
+.btn.primary {
+  background: linear-gradient(135deg, var(--brand-navy), #123f92 58%, #1f65e6);
+  box-shadow: 0 16px 34px rgba(31, 101, 230, 0.2);
+}
+
+.enterprise-hero {
+  background:
+    linear-gradient(105deg, rgba(255,255,255,0.95) 0%, rgba(244,248,255,0.9) 42%, rgba(216,230,249,0.82) 100%),
+    url("../images/radar-editorial-strip.jpg") center/cover;
+  box-shadow: 0 40px 120px rgba(14, 45, 96, 0.17);
+}
+
+.enterprise-hero::before {
+  background:
+    linear-gradient(90deg, rgba(31, 101, 230, 0.055) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(31, 101, 230, 0.045) 1px, transparent 1px);
+}
+
+.hero-kicker {
+  color: #174fa7;
+  border-color: rgba(31, 101, 230, 0.26);
+  background: rgba(255,255,255,0.82);
+}
+
+.enterprise-map.ecosystem-map {
+  isolation: isolate;
+  min-height: 560px;
+  border-color: rgba(118, 178, 255, 0.28);
+  background:
+    linear-gradient(180deg, rgba(4, 14, 36, 0.86), rgba(7, 22, 50, 0.94)),
+    radial-gradient(circle at 50% 48%, rgba(47, 115, 255, 0.33), transparent 38%),
+    url("../images/radar-editorial-strip.jpg") center/cover;
+}
+
+.enterprise-map.ecosystem-map::before,
+.enterprise-map.ecosystem-map::after {
+  border-color: rgba(114, 199, 255, 0.24);
+  animation: terrasanPulse 5.2s ease-in-out infinite;
+}
+
+.enterprise-map.ecosystem-map::after {
+  border-color: rgba(255,255,255,0.17);
+  animation-delay: 1.3s;
+}
+
+.market-trace {
+  position: absolute;
+  left: 24px;
+  right: 24px;
+  bottom: 22px;
+  height: 82px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  align-items: end;
+  gap: 9px;
+  opacity: 0.72;
+  z-index: 1;
+}
+
+.market-trace span {
+  display: block;
+  min-height: 22px;
+  border-radius: 4px 4px 0 0;
+  background: linear-gradient(180deg, rgba(114,199,255,0.82), rgba(31,101,230,0.18));
+  box-shadow: 0 0 30px rgba(47, 115, 255, 0.2);
+  animation: traceFlow 3.8s ease-in-out infinite;
+}
+
+.market-trace span:nth-child(2) { min-height: 48px; animation-delay: 0.3s; }
+.market-trace span:nth-child(3) { min-height: 66px; animation-delay: 0.6s; }
+.market-trace span:nth-child(4) { min-height: 38px; animation-delay: 0.9s; }
+.market-trace span:nth-child(5) { min-height: 74px; animation-delay: 1.2s; }
+
+.connection-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.connection {
+  position: absolute;
+  left: 18%;
+  right: 18%;
+  top: 50%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(114,199,255,0.6), transparent);
+  transform-origin: 50% 50%;
+}
+
+.connection-a { transform: rotate(0deg); }
+.connection-b { transform: rotate(45deg); }
+.connection-c { transform: rotate(-45deg); }
+.connection-d { transform: rotate(90deg); }
+
+.map-core {
+  width: 184px;
+  min-height: 174px;
+  padding: 18px;
+  border: 1px solid rgba(114, 199, 255, 0.28);
+  background:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.98), rgba(18, 63, 146, 0.94)),
+    #050e24;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,0.08),
+    0 30px 90px rgba(0,0,0,0.44),
+    0 0 70px rgba(47, 115, 255, 0.23);
+  z-index: 5;
+}
+
+.map-core::before,
+.map-core::after {
+  content: "";
+  position: absolute;
+  inset: -18px;
+  border: 1px solid rgba(114, 199, 255, 0.18);
+  border-radius: 14px;
+  animation: terrasanPulse 3.6s ease-in-out infinite;
+}
+
+.map-core::after {
+  inset: -34px;
+  border-color: rgba(255,255,255,0.1);
+  animation-delay: 1.2s;
+}
+
+.map-logo {
+  width: 54px;
+  height: 54px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.22);
+  box-shadow: 0 14px 36px rgba(0,0,0,0.28);
+  z-index: 1;
+}
+
+.map-core span,
+.map-core strong,
+.map-core small {
+  position: relative;
+  z-index: 1;
+}
+
+.map-core span {
+  color: #ffffff;
+  font-size: 18px;
+  text-align: center;
+}
+
+.map-core strong {
+  color: var(--brand-cyan);
+  font-size: 15px;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.map-core small {
+  max-width: 150px;
+  color: rgba(232, 244, 255, 0.72);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.orbit-card {
+  width: 164px;
+  min-height: 98px;
+  color: #eef7ff;
+  background:
+    linear-gradient(145deg, rgba(7, 18, 43, 0.9), rgba(17, 52, 111, 0.78)),
+    url("../images/radar-editorial-strip.jpg") center/cover;
+  border-color: rgba(114, 199, 255, 0.24);
+  box-shadow: 0 22px 58px rgba(0,0,0,0.28);
+  backdrop-filter: blur(14px);
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+}
+
+.orbit-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgba(255,255,255,0.09), transparent 48%);
+  pointer-events: none;
+}
+
+.orbit-card span {
+  color: var(--brand-cyan);
+  position: relative;
+}
+
+.orbit-card strong,
+.orbit-card small {
+  position: relative;
+}
+
+.orbit-card small {
+  color: rgba(238,247,255,0.7);
+  font-size: 11px;
+  line-height: 1.25;
+}
+
+.orbit-card.is-active,
+.orbit-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(114, 199, 255, 0.72);
+  box-shadow: 0 28px 70px rgba(31,101,230,0.28);
+}
+
+.orbit-1 { left: 22px; top: 88px; }
+.orbit-2 { right: 22px; top: 88px; }
+.orbit-3 { right: 22px; top: 236px; }
+.orbit-4 { left: 22px; top: 236px; }
+.orbit-5 { left: 54px; bottom: 38px; transform: none; }
+.orbit-6 { right: 54px; bottom: 38px; }
+.orbit-5.is-active,
+.orbit-5:hover { transform: translateY(-3px); }
+
+.map-topline { color: #eaf6ff; }
+
+.map-topline span,
+.command-strip span,
+.division-card span,
+.flow-board span,
+.rail-head span,
+.eyebrow,
+.corp-card span,
+.section-heading span,
+.proof-panel span,
+.metric-grid span,
+.panel-status span,
+.tax-box span {
+  color: #1f65e6;
+}
+
+.map-topline span { color: rgba(234,246,255,0.72); }
+
+.command-strip article,
+.division-card,
+.flow-board div {
+  position: relative;
+  overflow: hidden;
+  color: #f3f8ff;
+  border-color: rgba(31,101,230,0.16);
+  background:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(18, 63, 146, 0.72)),
+    url("../images/radar-editorial-strip.jpg") center/cover;
+  box-shadow: 0 24px 70px rgba(14, 45, 96, 0.16);
+}
+
+.command-strip article:nth-child(2),
+.division-card:nth-child(2),
+.flow-board div:nth-child(2) {
+  background:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(12, 54, 128, 0.7)),
+    url("../images/team-fullwidth.png") center/cover;
+}
+
+.command-strip article:nth-child(3),
+.division-card:nth-child(3),
+.flow-board div:nth-child(3) {
+  background:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.86), rgba(18, 63, 146, 0.72)),
+    url("../images/hero-terrasan.png") center/cover;
+}
+
+.division-card:nth-child(4),
+.flow-board div:nth-child(4) {
+  background:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.86), rgba(9, 34, 82, 0.76)),
+    url("../images/contact-bg.png") center/cover;
+}
+
+.command-strip article::before,
+.division-card::before,
+.flow-board div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255,255,255,0.08) 1px, transparent 1px),
+    linear-gradient(0deg, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size: 32px 32px;
+  opacity: 0.42;
+  pointer-events: none;
+}
+
+.command-strip article > *,
+.division-card > *,
+.flow-board div > * {
+  position: relative;
+  z-index: 1;
+}
+
+.command-strip span,
+.division-card span,
+.flow-board span { color: var(--brand-cyan); }
+
+.command-strip p,
+.division-card p,
+.flow-board p { color: rgba(243,248,255,0.76); }
+
+.division-card { border-top-color: #2f73ff; }
+
+.enterprise-section {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,0.9), rgba(238,245,255,0.82)),
+    url("../images/radar-editorial-strip.jpg") center/cover;
+  box-shadow: 0 24px 80px rgba(14, 45, 96, 0.13);
+}
+
+.corp-card,
+.metric-grid article,
+.proof-panel article,
+.contact-panel a {
+  background:
+    linear-gradient(145deg, rgba(255,255,255,0.9), rgba(235,244,255,0.84)),
+    url("../images/radar-editorial-strip.jpg") center/cover;
+}
+
+@keyframes terrasanPulse {
+  0%, 100% { opacity: 0.58; transform: scale(1); }
+  50% { opacity: 0.96; transform: scale(1.025); }
+}
+
+@keyframes traceFlow {
+  0%, 100% { opacity: 0.42; transform: scaleY(0.86); }
+  50% { opacity: 0.9; transform: scaleY(1.08); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .enterprise-map.ecosystem-map::before,
+  .enterprise-map.ecosystem-map::after,
+  .map-core::before,
+  .map-core::after,
+  .market-trace span { animation: none; }
+}
+
+@media (max-width: 1180px) {
+  .enterprise-map.ecosystem-map { min-height: 620px; }
+}
+
+@media (max-width: 820px) {
+  .enterprise-map.ecosystem-map {
+    min-height: auto;
+    background:
+      linear-gradient(180deg, rgba(4, 14, 36, 0.95), rgba(7, 22, 50, 0.96)),
+      url("../images/radar-editorial-strip.jpg") center/cover;
+  }
+
+  .market-trace,
+  .connection-layer { display: none; }
+
+  .map-core,
+  .orbit-card,
+  .orbit-1,
+  .orbit-2,
+  .orbit-3,
+  .orbit-4,
+  .orbit-5,
+  .orbit-6 {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    width: auto;
+    transform: none;
+  }
+
+  .map-core { margin-bottom: 4px; }
+
+  .orbit-card.is-active,
+  .orbit-card:hover,
+  .orbit-5.is-active,
+  .orbit-5:hover { transform: none; }
+}
