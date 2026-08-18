@@ -24,9 +24,7 @@ oterrasan-site/
 │   ├── js/
 │   │   └── main.js             # JavaScript
 │   └── images/
-│       ├── hero-terrasan.png   # Foto poltrona (hero)
-│       ├── team-fullwidth.png  # Foto equipe (Lions)
-│       └── contact-bg.png      # Foto P&B (Contato)
+│       └── grupo-terrasan-logo.jpg   # Logo do Grupo Terrasan
 └── README.md
 ```
 
