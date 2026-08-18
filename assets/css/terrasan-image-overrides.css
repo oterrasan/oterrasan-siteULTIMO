@@ -1,13 +1,116 @@
-/* Shared licensed image overrides for pages that use style.css */
+/* Shared licensed image overrides for Terrasan pages */
 :root {
   --terrasan-image-corporate: url("https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
   --terrasan-image-market: url("https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+  --terrasan-image-health: url("https://images.pexels.com/photos/5206923/pexels-photo-5206923.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+  --terrasan-image-media: url("https://images.pexels.com/photos/10464784/pexels-photo-10464784.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+  --terrasan-image-legal: url("https://images.pexels.com/photos/8152751/pexels-photo-8152751.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+  --terrasan-image-tech: url("https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+}
+
+.enterprise-hero {
+  background-image:
+    linear-gradient(110deg, rgba(255, 255, 255, 0.94), rgba(224, 236, 252, 0.84)),
+    var(--terrasan-image-corporate) !important;
+  background-size: cover, cover !important;
+  background-position: center, center !important;
+}
+
+.hero-visual,
+.brand-photo {
+  background-image:
+    linear-gradient(180deg, rgba(9, 12, 22, 0.18), rgba(8, 12, 18, 0.78)),
+    var(--terrasan-image-corporate) !important;
+  background-size: cover, cover !important;
+  background-position: center, center !important;
+}
+
+.enterprise-map.ecosystem-map {
+  background-image:
+    linear-gradient(180deg, rgba(4, 14, 36, 0.86), rgba(7, 22, 50, 0.94)),
+    radial-gradient(circle at 50% 48%, rgba(47, 115, 255, 0.33), transparent 38%),
+    var(--terrasan-image-corporate) !important;
+  background-size: cover, auto, cover !important;
+  background-position: center, center, center !important;
+}
+
+.orbit-card,
+.command-strip article,
+.division-card,
+.flow-board div,
+.enterprise-section,
+.corp-card,
+.metric-grid article,
+.proof-panel article,
+.contact-panel a {
+  background-size: cover, cover !important;
+  background-position: center, center !important;
+}
+
+.orbit-card,
+.command-strip article:nth-child(1),
+.enterprise-section,
+.corp-card,
+.metric-grid article,
+.proof-panel article,
+.contact-panel a {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(18, 63, 146, 0.72)),
+    var(--terrasan-image-corporate) !important;
+}
+
+.orbit-1,
+.command-strip article:nth-child(2) {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.82), rgba(12, 54, 128, 0.72)),
+    var(--terrasan-image-market) !important;
+}
+
+.orbit-2,
+.division-card:nth-child(4) {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(12, 54, 128, 0.72)),
+    var(--terrasan-image-legal) !important;
+}
+
+.orbit-3,
+.division-card:nth-child(2),
+.flow-board div:nth-child(1) {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(18, 63, 146, 0.7)),
+    var(--terrasan-image-media) !important;
+}
+
+.orbit-4,
+.division-card:nth-child(1) {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(12, 54, 128, 0.7)),
+    var(--terrasan-image-health) !important;
+}
+
+.orbit-5,
+.orbit-6,
+.command-strip article:nth-child(3),
+.division-card:nth-child(3),
+.flow-board div:nth-child(2),
+.flow-board div:nth-child(4) {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.86), rgba(18, 63, 146, 0.72)),
+    var(--terrasan-image-tech) !important;
+}
+
+.flow-board div:nth-child(3) {
+  background-image:
+    linear-gradient(145deg, rgba(5, 14, 36, 0.84), rgba(12, 54, 128, 0.74)),
+    var(--terrasan-image-market) !important;
 }
 
 .radar-thumb {
   background-image:
     linear-gradient(135deg, rgba(20, 61, 137, 0.74), rgba(3, 14, 20, 0.36)),
     var(--terrasan-image-market) !important;
+  background-size: 100% 100%, cover !important;
+  background-position: center, center !important;
 }
 
 .contact-hero {
