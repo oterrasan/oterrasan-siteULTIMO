@@ -1,0 +1,15 @@
+/* Shared licensed image overrides for pages that use style.css */
+:root {
+  --terrasan-image-corporate: url("https://images.pexels.com/photos/3184292/pexels-photo-3184292.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+  --terrasan-image-market: url("https://images.pexels.com/photos/590041/pexels-photo-590041.jpeg?auto=compress&cs=tinysrgb&w=1600&h=900&fit=crop");
+}
+
+.radar-thumb {
+  background-image:
+    linear-gradient(135deg, rgba(20, 61, 137, 0.74), rgba(3, 14, 20, 0.36)),
+    var(--terrasan-image-market) !important;
+}
+
+.contact-hero {
+  background-image: var(--terrasan-image-corporate) !important;
+}
